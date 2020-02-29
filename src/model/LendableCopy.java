@@ -1,18 +1,21 @@
-package projectstartup.librarysample.business;
+package model;
 
 import java.io.Serializable;
 
 public class LendableCopy implements Serializable {
 	private Publication publication;
-	private int copyId; 
+	private int copyId;
+
 	public void setPublication(Publication publication) {
 		this.publication = publication;
 	}
+
 	public void setCopyId(int copyId) {
 		this.copyId = copyId;
 	}
+
 	public String toString() {
 		return publication.toString();
 	}
-	
+
 }

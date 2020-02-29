@@ -1,8 +1,9 @@
-package projectstartup.librarysample.dataaccess;
+package dao;
 
-import projectstartup.librarysample.business.LibraryMember;
+import model.LibraryMember;
 
 public interface DataAccess {
 	public void saveLibraryMember(String name, LibraryMember member);
+
 	public LibraryMember readLibraryMember(String name);
 }
