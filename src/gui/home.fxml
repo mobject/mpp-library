@@ -18,7 +18,7 @@
       <Label text="MEMBER" GridPane.rowIndex="2" GridPane.columnIndex="0"  />
       <FlowPane GridPane.rowIndex="3" hgap="25" vgap="10">
          <children>
-            <Button text="Add"></Button>
+            <Button text="Add" onAction="#addMemberAction"></Button>
             <Button text="Edit"></Button>
             <Button text="Checkout Records"></Button>
          </children>
