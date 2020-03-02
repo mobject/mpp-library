@@ -1,17 +1,15 @@
 package controller;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+
+import gui.ManageMemberForm;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class HomeController {
 
@@ -33,4 +31,12 @@ public class HomeController {
 //        stage.show();
         vBox.show();
     }
+    
+    public void addMemberAction(javafx.event.ActionEvent actionEvent) throws IOException {
+        Stage stage = new ManageMemberForm();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.show();
+    }
+    
+    
 }
