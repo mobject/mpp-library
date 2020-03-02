@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10"
+          xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="controller.SystemController">
+
+
+
+    <FlowPane GridPane.rowIndex="1" alignment="BASELINE_CENTER" hgap="25" vgap="10">
+       <VBox >
+          <Label text="WELCOME!" GridPane.rowIndex="0"  />
+          <HBox>
+             <Label>User ID</Label>
+             <TextField/>
+          </HBox>
+          <HBox>
+             <Label>Password</Label>
+             <TextField />
+          </HBox>
+
+          <Button text="Login" onAction="#login"/>
+       </VBox>
+    </FlowPane>
+</GridPane>
