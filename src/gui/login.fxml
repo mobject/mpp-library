@@ -7,21 +7,23 @@
           xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="controller.SystemController">
 
+    <Label text="YOUR LIBRARY, WELCOME!"/>
+    <Label text="User ID:"
+           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
+    <TextField fx:id="userIdField"
+               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-    <FlowPane GridPane.rowIndex="1" alignment="BASELINE_CENTER" hgap="25" vgap="10">
-       <VBox >
-          <Label text="WELCOME!" GridPane.rowIndex="0"  />
-          <HBox>
-             <Label>User ID</Label>
-             <TextField/>
-          </HBox>
-          <HBox>
-             <Label>Password</Label>
-             <TextField />
-          </HBox>
+    <Label text="Password:"
+           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
 
-          <Button text="Login" onAction="#login"/>
-       </VBox>
-    </FlowPane>
+    <PasswordField fx:id="passwordField"
+                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+    <HBox spacing="10" alignment="bottom_right"
+          GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <Button text="Login"
+                onAction="#login"/>
+    </HBox>
+
 </GridPane>

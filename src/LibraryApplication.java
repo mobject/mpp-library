@@ -13,7 +13,7 @@ public class LibraryApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-		Parent root = FXMLLoader.load(getClass().getResource("gui/home.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("gui/login.fxml"));
 		primaryStage.setTitle("Library");
 		primaryStage.setScene(new Scene(root, 800, 600));
 		primaryStage.show();
