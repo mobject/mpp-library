@@ -1,5 +1,6 @@
 package gui;
 
+import controller.ManageMemberController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,9 +17,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Address;
+import model.Member;
 
 public class ManageMemberForm extends Stage {
 
+	//Font define
+	private static final String FONT = "Tahoma";
 	//Label constant
 	protected static final String LBL_ADD_NEW_LIBRARY_MEMBER = "Add New Library Member";
 	protected static final String LBL_MEMBER_ID = "Member ID";
@@ -34,6 +39,8 @@ public class ManageMemberForm extends Stage {
 	//Error constant
 	protected static final String ERROR_EMPTY_FIELD = " is empty.";
 	protected static final String ERROR_EXISTED_MEMBER = "Member is existed and cannot create";
+	private ManageMemberController manageMemberController =  new ManageMemberController();
+	
 	
 	public ManageMemberForm() {
 		GridPane gridPane = createMemberFormPane();
@@ -55,13 +62,17 @@ public class ManageMemberForm extends Stage {
 	private void addUIControls(GridPane gridPane) {
 		int row = 0;
 		Text sceneTitle = new Text(LBL_ADD_NEW_LIBRARY_MEMBER);
-		sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		sceneTitle.setFont(Font.font(FONT, FontWeight.NORMAL, 20));
 		gridPane.add(sceneTitle, 0, row, 2, 1);
 		row++;
 		// Member ID
 		Label lbl_memberId = new Label(LBL_MEMBER_ID);
 		gridPane.add(lbl_memberId, 0, row);
 		TextField txtMemberId = new TextField();
+		//int latestMemberId = manageMemberController.getLastestMemberId();
+		//txtMemberId.setText("Member "+ latestMemberId);
+		txtMemberId.setText("Member ");
+		txtMemberId.setVisible(false);
 		gridPane.add(txtMemberId, 1, row);
 		row++;
 		// First Name
@@ -116,13 +127,12 @@ public class ManageMemberForm extends Stage {
         // Message place
         final Text msgTarget = new Text();
         gridPane.add(msgTarget, 1, row);
-        
+        msgTarget.setFill(Color.FIREBRICK);
         //add event for button
         btnCreate.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				msgTarget.setFill(Color.FIREBRICK);
 
 				if (checkTextBoxEmpty(txtMemberId, msgTarget, LBL_MEMBER_ID)) {
                 } else if (checkTextBoxEmpty(txtFirstName, msgTarget, LBL_FIRST_NAME)) {
@@ -134,19 +144,23 @@ public class ManageMemberForm extends Stage {
                 } else if (checkTextBoxEmpty(txtPhone, msgTarget, LBL_PHONE)) {
                 } else {
                 	msgTarget.setText("");
+                	
+                	//Check if MemberID not exist
+    				if (isMemberExist(txtFirstName.getText())) {
+    					msgTarget.setText(ERROR_EXISTED_MEMBER);
+    				} else {
+    					// save to file
+    					//TODO					
+    					//Address address = new Address(txtStreet.getText().trim(), txtCity.getText().trim(), txtState.getText().trim(), Integer.parseInt(txtZip.getText().trim()));
+    					//Member member = new Member(txtFirstName.getText().trim(), txtLastName.getText().trim(), txtPhone.getText().trim(), address);
+    					//manageMemberController.insertMember(member);
+    					
+    					//for (Member mem : members)
+    					//	System.out.println(mem.toString());
+    				}
                 }
 				
-				//Check if MemberID not exist
-				if (isMemberExist(txtFirstName.getText())) {
-					msgTarget.setText(ERROR_EXISTED_MEMBER);
-				} else {
-					// save to file
-					//TODO
-					//ManageMemberController manageMemberController = new ManageMemberController();
-					//List<Member> members = manageMemberController.getAll();
-					//for (Member mem : members)
-					//	System.out.println(mem.toString());
-				}
+				
         	}
 		});
 

@@ -19,8 +19,8 @@
       <FlowPane GridPane.rowIndex="3" hgap="25" vgap="10">
          <children>
             <Button text="Add" onAction="#addMemberAction"></Button>
-            <Button text="Edit"></Button>
-            <Button text="Checkout Records"></Button>
+            <Button text="Edit" onAction="#editMemberAction"></Button>
+            <Button text="Checkout Records" onAction="#checkoutRecordAction"></Button>
          </children>
       </FlowPane>
    </children>

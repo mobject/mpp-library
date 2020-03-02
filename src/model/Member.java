@@ -7,6 +7,13 @@ public class Member {
 	private String phone;
 	private Address address;
 	
+	public Member(String firstName, String lastName, String phone, Address address) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phone = phone;
+		this.address = address;
+	}
+	
 	public Member(int idMember, String firstName, String lastName, String phone, Address address) {
 		this.idMember = idMember;
 		this.firstName = firstName;
