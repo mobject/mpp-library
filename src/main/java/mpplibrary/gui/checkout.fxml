@@ -3,7 +3,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
-<Stage  xmlns:fx="http://javafx.com/fxml" title="Checkout" width="800" height="600" fx:controller="controller.CheckoutController">
+<Stage  xmlns:fx="http://javafx.com/fxml" title="Checkout" width="800" height="600" fx:controller="mpplibrary.controller.CheckoutController">
    <scene>
       <Scene>
          <VBox>

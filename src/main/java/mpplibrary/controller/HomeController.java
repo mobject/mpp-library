@@ -1,17 +1,17 @@
-package controller;
+package mpplibrary.controller;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-import gui.CheckoutRecordForm;
-import gui.EditMemberForm;
-import gui.ManageMemberForm;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mpplibrary.gui.CheckoutRecordForm;
+import mpplibrary.gui.EditMemberForm;
+import mpplibrary.gui.ManageMemberForm;
 
 public class HomeController {
 

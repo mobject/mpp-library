@@ -1,4 +1,4 @@
-package controller;
+package mpplibrary.controller;
 
 public class CheckoutController {
 
