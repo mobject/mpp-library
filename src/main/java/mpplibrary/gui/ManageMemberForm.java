@@ -16,6 +16,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mpplibrary.controller.ManageMemberController;
+import mpplibrary.util.SpringBeansUtil;
 
 public class ManageMemberForm extends Stage {
 
@@ -147,8 +148,9 @@ public class ManageMemberForm extends Stage {
     					msgTarget.setText(ERROR_EXISTED_MEMBER);
     				} else {
     					// save to file
-    					//TODO					
-    					//Address address = new Address(txtStreet.getText().trim(), txtCity.getText().trim(), txtState.getText().trim(), Integer.parseInt(txtZip.getText().trim()));
+						ManageMemberController controller = SpringBeansUtil.getBean(ManageMemberController.class);
+						//TODO call save user in Controller
+						//Address address = new Address(txtStreet.getText().trim(), txtCity.getText().trim(), txtState.getText().trim(), Integer.parseInt(txtZip.getText().trim()));
     					//Member member = new Member(txtFirstName.getText().trim(), txtLastName.getText().trim(), txtPhone.getText().trim(), address);
     					//manageMemberController.insertMember(member);
     					
