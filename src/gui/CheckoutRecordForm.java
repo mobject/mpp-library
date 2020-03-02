@@ -1,6 +1,5 @@
 package gui;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,7 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.CheckoutHistory;
 
-public class CheckoutRecordForm extends Application {
+public class CheckoutRecordForm extends Stage {
 
 	//Constant
 	private static final String LBL_CHECKOUT_RECORD = "Checkout Record";
@@ -38,12 +37,13 @@ public class CheckoutRecordForm extends Application {
 	
 	private static final String BTN_SEARCH = "SEARCH";
 
-	private static final String font = "Tahoma";
+	private static final String FONT = "Tahoma";
 	
 	// attributes
 	//private TableView<CheckoutRecordForm> table = new TableView<>();
 	private TableView<CheckoutHistory> table = new TableView<>();
 	
+	/*
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -63,6 +63,14 @@ public class CheckoutRecordForm extends Application {
 		stage.show();
 		
 	}
+	*/
+	
+	public CheckoutRecordForm() {
+		GridPane gridPane = createMemberFormPane();
+		addUIControls(gridPane);
+		Scene scene = new Scene(gridPane, 800, 500);
+        this.setScene(scene);
+	}
 	
 	private GridPane createMemberFormPane() {
 		GridPane gridPane = new GridPane();
@@ -79,7 +87,7 @@ public class CheckoutRecordForm extends Application {
 	private void addUIControls(GridPane gridPane) {
 		int row = 0;
 		Text sceneTitle = new Text(LBL_CHECKOUT_RECORD);
-		sceneTitle.setFont(Font.font(font, FontWeight.NORMAL, 20));
+		sceneTitle.setFont(Font.font(FONT, FontWeight.NORMAL, 20));
 		gridPane.add(sceneTitle, 0, row, 3, 1);
 		row++;
 		// Member ID
@@ -116,7 +124,7 @@ public class CheckoutRecordForm extends Application {
 		
 		//Grid section
 		final Label label = new Label(LBL_HISTORY_CHECKOUT);
-        label.setFont(new Font(font, 15));
+        label.setFont(new Font(FONT, 15));
         label.setTextFill(Color.BLUEVIOLET);
         gridPane.add(label, 0, row);
         row++;

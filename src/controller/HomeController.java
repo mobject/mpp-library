@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
+import gui.CheckoutRecordForm;
+import gui.EditMemberForm;
 import gui.ManageMemberForm;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,11 +34,25 @@ public class HomeController {
         vBox.show();
     }
     
+    
+    //Member actions
     public void addMemberAction(javafx.event.ActionEvent actionEvent) throws IOException {
         Stage stage = new ManageMemberForm();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
     }
     
+    public void editMemberAction(javafx.event.ActionEvent actionEvent) throws IOException {
+        Stage stage = new EditMemberForm();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.show();
+    }
+    
+    //Checkout Record History
+    public void checkoutRecordAction(javafx.event.ActionEvent actionEvent) throws IOException {
+        Stage stage = new CheckoutRecordForm();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.show();
+    }
     
 }
