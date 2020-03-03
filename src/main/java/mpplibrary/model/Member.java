@@ -1,10 +1,21 @@
 package mpplibrary.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Member {
+
+	@Id
+	@GeneratedValue
 	private int idMember;
 	private String firstName;
 	private String lastName;
 	private String phone;
+
+	@OneToOne
 	private Address address;
 
 	public Member(){

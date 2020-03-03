@@ -9,12 +9,17 @@ import mpplibrary.dto.CheckoutRecordDTO;
 import mpplibrary.model.Book;
 import mpplibrary.model.BookCopy;
 import mpplibrary.model.Member;
+import mpplibrary.service.CheckoutService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
 public class CheckoutController {
+
+    @Autowired
+    private CheckoutService checkoutService;
 
     @FXML
     private TableView checkoutRecordsTableView;
@@ -32,8 +37,8 @@ public class CheckoutController {
         dto.setBook(book);
 
         BookCopy bookCopy = new BookCopy();
-        bookCopy.setDueDate(LocalDate.now());
-        bookCopy.setCheckoutDate(LocalDate.now());
+//        bookCopy.setDueDate(LocalDate.now());
+//        bookCopy.setCheckoutDate(LocalDate.now());
         dto.setBookCopy(bookCopy);
 
         items.add(dto);

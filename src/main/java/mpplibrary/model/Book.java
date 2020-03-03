@@ -13,11 +13,11 @@ public class Book implements Serializable {
 	private int id;
 	private String isbn;
 	private String title;
-	private boolean available;
+	private int maxCheckoutDate;
 
 	@Override
 	public String toString() {
-		return "id: " + id + ", isbn: " + isbn + ", available: " + available;
+		return "id: " + id + ", isbn: " + isbn;
 	}
 
 	public int getId() {
@@ -44,11 +44,11 @@ public class Book implements Serializable {
 		this.title = title;
 	}
 
-	public boolean isAvailable() {
-		return available;
+	public int getMaxCheckoutDate() {
+		return maxCheckoutDate;
 	}
 
-	public void setAvailable(boolean available) {
-		this.available = available;
+	public void setMaxCheckoutDate(int maxCheckoutDate) {
+		this.maxCheckoutDate = maxCheckoutDate;
 	}
 }

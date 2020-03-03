@@ -48,11 +48,11 @@ public class CheckoutRecordDTO {
         return book.getIsbn();
     }
 
-    public String getDueDate(){
-        return bookCopy.getDueDate().toString();
-    }
-
-    public String getCheckoutDate() {
-        return getBookCopy().getCheckoutDate().toString();
-    }
+//    public String getDueDate(){
+//        return bookCopy.getDueDate().toString();
+//    }
+//
+//    public String getCheckoutDate() {
+//        return getBookCopy().getCheckoutDate().toString();
+//    }
 }

@@ -1,6 +1,8 @@
 package mpplibrary.service;
 
+import mpplibrary.model.Book;
 import mpplibrary.model.User;
+import mpplibrary.repository.BookRepository;
 import mpplibrary.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,13 +11,13 @@ import org.springframework.stereotype.Service;
 public class BookService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private BookRepository bookRepository;
 
-	public User createUser(String firstName, String lastName, String password) {
-		User user = new User();
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setPassword(password);
-		return userRepository.save(user);
+	public Book addBook(String isbn, String title, int maxCheckoutDate) {
+		Book newBook = new Book();
+		newBook.setIsbn(isbn);
+		newBook.setTitle(title);
+		newBook.setMaxCheckoutDate(maxCheckoutDate);
+		return bookRepository.save(newBook);
 	}
 }
