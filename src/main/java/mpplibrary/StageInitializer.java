@@ -30,7 +30,7 @@ public class StageInitializer implements ApplicationListener<LibraryApplication.
 		Parent root;
 
 		try {
-			root = FXMLLoader.load(getClass().getResource("gui/home.fxml"));
+			root = FXMLLoader.load(getClass().getResource("gui/login.fxml"));
 			primaryStage.setTitle("Library");
 			primaryStage.setScene(new Scene(root, LibraryApplication.WINDOW_WIDTH, LibraryApplication.WINDOW_HEIGHT));
 			primaryStage.show();
