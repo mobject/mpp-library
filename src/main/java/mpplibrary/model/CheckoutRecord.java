@@ -1,23 +1,34 @@
 package mpplibrary.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class CheckoutRecord implements Serializable {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
 
 	@ManyToOne
+	@JoinColumn(name="idBookCopy")
 	private BookCopy bookCopy;
 
 	@ManyToOne
+	@JoinColumn(name="idMember")
 	private Member member;
 
 	@ManyToOne
+	@JoinColumn(name="idUser")
 	private User user;
 
 	private LocalDate checkoutDate;

@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Book implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String isbn;
 	private String title;

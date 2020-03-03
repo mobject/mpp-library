@@ -21,7 +21,7 @@ public class BookCopyService {
     private BookRepository bookRepository;
 
     public void addBookCopy(String isbn, int numberOfCopies) throws BookNotFoundException {
-        Book book = bookRepository.findByIsbn(isbn).orElseThrow(BookNotFoundException::new);
+        Book book = bookRepository.findFirstByIsbn(isbn).orElseThrow(BookNotFoundException::new);
         Iterable<BookCopy> bookCopies = buildBookCopies(book, numberOfCopies);
         bookCopyRepository.saveAll(bookCopies);
     }

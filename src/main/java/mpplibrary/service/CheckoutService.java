@@ -1,5 +1,16 @@
 package mpplibrary.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import mpplibrary.BookNotFoundException;
 import mpplibrary.model.Book;
 import mpplibrary.model.BookCopy;
@@ -7,10 +18,6 @@ import mpplibrary.model.CheckoutRecord;
 import mpplibrary.model.Member;
 import mpplibrary.repository.BookRepository;
 import mpplibrary.repository.CheckoutRecordRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 public class CheckoutService {
@@ -50,4 +57,13 @@ public class CheckoutService {
         checkoutRecord.setMember(member);
         return checkoutRecordRepository.save(checkoutRecord);
     }
+    
+    
+    
+    public List<CheckoutRecord> findCheckoutRecordsByMemberId(int memberId) {
+    	return checkoutRecordRepository.findAllByMemberId(memberId);
+    	
+    }
+    
+    
 }

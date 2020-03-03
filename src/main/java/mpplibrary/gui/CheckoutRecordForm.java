@@ -1,5 +1,8 @@
 package mpplibrary.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +23,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import mpplibrary.model.CheckoutHistory;
+import mpplibrary.controller.CheckoutController;
+import mpplibrary.controller.ManageMemberController;
+import mpplibrary.dto.CheckoutRecordDTO;
+import mpplibrary.model.CheckoutRecord;
+import mpplibrary.util.SpringBeansUtil;
 
 public class CheckoutRecordForm extends Stage {
 
@@ -36,13 +43,23 @@ public class CheckoutRecordForm extends Stage {
 	private static final String COL_TITLE_DUE_DATE = "DUE";
 	
 	private static final String BTN_SEARCH = "SEARCH";
+	protected static final String ERROR_EXISTED_MEMBER = "Member does not exist";
 
 	private static final String FONT = "Tahoma";
 	
-	private TableView<CheckoutHistory> table = new TableView<>();
+	private TableView<CheckoutRecordDTO> table = new TableView<>();
+	private int userId;
+	private CheckoutController checkoutController;
+	private ManageMemberController manageMemberController;
 	
 	public CheckoutRecordForm() {
 		GridPane gridPane = createMemberFormPane();
+		checkoutController = SpringBeansUtil.getBean(CheckoutController.class);
+		manageMemberController = SpringBeansUtil.getBean(ManageMemberController.class);
+		
+		//memberId = SpringBeansUtil.getSession().getMemberId();
+		userId = 0;
+		
 		addUIControls(gridPane);
 		Scene scene = new Scene(gridPane, 800, 500);
         this.setScene(scene);
@@ -54,7 +71,7 @@ public class CheckoutRecordForm extends Stage {
 		//gridPane.setPrefWidth(1500);
 		gridPane.setHgap(10);
 		gridPane.setVgap(10);
-		gridPane.setPadding(new Insets(50, 25, 25, 25));
+		gridPane.setPadding(new Insets(20, 20, 20, 20));
 
 		return gridPane;
 	}
@@ -90,53 +107,61 @@ public class CheckoutRecordForm extends Stage {
 				msgTarget.setFill(Color.FIREBRICK);
 				if (ManageMemberForm.checkTextBoxEmpty(txtMemberId, msgTarget, ManageMemberForm.LBL_MEMBER_ID)) {
 					table.getItems().clear();
+					
                 } else {
-                	table.setItems(tableFill());
-                	msgTarget.setText("");
+                	if (!manageMemberController.isMemberExist(Integer.parseInt(txtMemberId.getText()))) {
+    					msgTarget.setText(ERROR_EXISTED_MEMBER);
+    					msgTarget.setFill(Color.FIREBRICK);
+    				} else {
+    					//Fill data  
+    					table.setItems(tableFill(txtMemberId.getText()));
+                    	msgTarget.setText("");
+    				}
+                	
                 }
 				
 			}
 		});
 		
-		//Grid section
+		//TableView section
+		table.setPrefWidth(10000);
 		final Label label = new Label(LBL_HISTORY_CHECKOUT);
         label.setFont(new Font(FONT, 15));
         label.setTextFill(Color.BLUEVIOLET);
         gridPane.add(label, 0, row);
         row++;
-        //TODO
               
 		table.setEditable(false);
 				
-		TableColumn<CheckoutHistory, String> isbn  = new TableColumn<>(COL_TITLE_ISBN);
+		TableColumn<CheckoutRecordDTO, String> isbn  = new TableColumn<>(COL_TITLE_ISBN);
 		//isbn.setResizable(true);
-		isbn.setMinWidth(40);
-		isbn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+		isbn.setMinWidth(60);
+		//CheckoutRecordDTO dto = new CheckoutRecordDTO(checkoutRecord);
+		isbn.setCellValueFactory(new PropertyValueFactory<>("bookIsbn"));
 		
-		TableColumn<CheckoutHistory, String> bookName  = new TableColumn<>(COL_TITLE_BOOKNAME);
-		bookName.setMinWidth(80);
-		bookName.setCellValueFactory(new PropertyValueFactory<>("bookName"));
+		TableColumn<CheckoutRecordDTO, String> bookName  = new TableColumn<>(COL_TITLE_BOOKNAME);
+		bookName.setMinWidth(180);
+		bookName.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
 		
-		TableColumn<CheckoutHistory, String> author  = new TableColumn<>(COL_TITLE_AUTHOR);
+		TableColumn<CheckoutRecordDTO, String> author  = new TableColumn<>(COL_TITLE_AUTHOR);
 		author.setMinWidth(80);
 		author.setCellValueFactory(new PropertyValueFactory<>("authorName"));
 		
 		//Date column has 2 sub-column
-		TableColumn<CheckoutHistory, String> date  = new TableColumn<>(COL_TITLE_DATE);
+		TableColumn<CheckoutRecordDTO, String> date  = new TableColumn<>(COL_TITLE_DATE);
 		//checkoutDate.setMinWidth(100);
 		
-		TableColumn<CheckoutHistory, String> checkoutDate  = new TableColumn<>(COL_TITLE_CHECKOUT_DATE);
+		TableColumn<CheckoutRecordDTO, String> checkoutDate  = new TableColumn<>(COL_TITLE_CHECKOUT_DATE);
 		checkoutDate.setMinWidth(65);
 		checkoutDate.setCellValueFactory(new PropertyValueFactory<>("checkoutDate"));
 		
-		TableColumn<CheckoutHistory, String> dueDate = new TableColumn<>(COL_TITLE_DUE_DATE);
+		TableColumn<CheckoutRecordDTO, String> dueDate = new TableColumn<>(COL_TITLE_DUE_DATE);
 		dueDate.setMinWidth(35);
 		dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
 		
 		date.getColumns().addAll(checkoutDate, dueDate);
 		
 		table.getColumns().addAll(isbn, bookName, author, date);
-		//table.setItems(tableFill());
 		
 		gridPane.add(table, 0, row, 4, 1);
 		
@@ -144,37 +169,19 @@ public class CheckoutRecordForm extends Stage {
 	
 	
 	
-	 public ObservableList<CheckoutHistory> tableFill() {  
-	        ObservableList<CheckoutHistory> checkoutHistory = FXCollections.observableArrayList();
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-3", "STC Book1", "Marry", "01/29/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-1", "STC Book2", "Tom", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
-	        checkoutHistory.add(new CheckoutHistory("978-3-16-148410-0", "STC Book", "John", "01/30/2020", "02/20/2020"));
+	 public ObservableList<CheckoutRecordDTO> tableFill(String memberId) {  
+	        ObservableList<CheckoutRecordDTO> listData = FXCollections.observableArrayList();
 	        
-	        return checkoutHistory;
+	        List<CheckoutRecord> checkoutRecords = checkoutController.findCheckoutRecordsByMemberId(Integer.parseInt(memberId));
+	        //List<CheckoutRecordDTO> list = checkoutRecords.stream().map(CheckoutRecordDTO::new).collect(Collectors.toList());
+	        List<CheckoutRecordDTO> list = new ArrayList<>();
+	        for (CheckoutRecord checkoutRecord: checkoutRecords) {
+	        	CheckoutRecordDTO checkoutRecordDTO = new CheckoutRecordDTO(checkoutRecord);
+	        	list.add(checkoutRecordDTO);
+	        }
+	        listData.addAll(list);
+	        return listData;
 	    }
 	 
-	/*
-	public void setData(ObservableList<CheckoutRecordForm> items) {
-		ObservableList<CheckoutRecordForm> current = table.getItems();
-		if(current != null) {
-			current.addAll(items);
-		}
-		table.setItems(current);
-	}
-	*/
-	
+		
 }

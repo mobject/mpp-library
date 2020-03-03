@@ -16,7 +16,7 @@ public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private int idMember;
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String phone;
@@ -26,11 +26,11 @@ public class Member {
     @JoinColumn(name = "idAddress", referencedColumnName = "id")
 	private Address address;
 		
-	public int getIdMember() {
-		return idMember;
+	public int getId() {
+		return id;
 	}
-	public void setIdMember(int idMember) {
-		this.idMember = idMember;
+	public void setId(int idMember) {
+		this.id = idMember;
 	}
 	
 	public String getFirstName() {
