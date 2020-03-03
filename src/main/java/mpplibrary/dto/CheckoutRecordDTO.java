@@ -2,57 +2,54 @@ package mpplibrary.dto;
 
 import mpplibrary.model.Book;
 import mpplibrary.model.BookCopy;
+import mpplibrary.model.CheckoutRecord;
 import mpplibrary.model.Member;
 
 public class CheckoutRecordDTO {
-    private Member member;
-    private Book book;
-    private BookCopy bookCopy;
+
+    private CheckoutRecord checkoutRecord;
+
+    public CheckoutRecordDTO(CheckoutRecord checkoutRecord) {
+        this.checkoutRecord = checkoutRecord;
+    }
 
     public Member getMember() {
-        return member;
+        return checkoutRecord.getMember();
     }
 
     public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
+        return checkoutRecord.getBookCopy().getBook();
     }
 
     public BookCopy getBookCopy() {
-        return bookCopy;
+        return checkoutRecord.getBookCopy();
     }
-
-    public void setBookCopy(BookCopy bookCopy) {
-        this.bookCopy = bookCopy;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
-    }
-
     public String getMemberFirstName(){
-        return member.getFirstName();
-    }
-    public String getMemberLastName(){
-        return member.getLastName();
+        return this.getMember().getFirstName();
     }
 
-    public String getBookTitle(){
-        return book.getTitle();
+    public String getMemberLastName() {
+        return this.getMember().getLastName();
     }
 
-    public String getBookIsbn(){
-        return book.getIsbn();
+    public String getBookTitle() {
+        return this.getBook().getTitle();
     }
 
-//    public String getDueDate(){
-//        return bookCopy.getDueDate().toString();
-//    }
-//
-//    public String getCheckoutDate() {
-//        return getBookCopy().getCheckoutDate().toString();
-//    }
+    public String getBookIsbn() {
+        return this.getBook().getIsbn();
+    }
+
+    public String getDueDate() {
+        return checkoutRecord.getDueDate().toString();
+    }
+
+    public String getCheckoutDate() {
+        return checkoutRecord.getCheckoutDate().toString();
+    }
+
+    public int getId() {
+        return checkoutRecord.getId();
+    }
+
 }

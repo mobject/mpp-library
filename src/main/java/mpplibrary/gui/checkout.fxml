@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.stage.*?>
-
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
 <Stage height="600" title="Checkout" width="800" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="mpplibrary.controller.CheckoutController">
     <scene>
         <Scene>
@@ -25,6 +25,9 @@
                             <TableView fx:id="checkoutRecordsTableView" prefWidth="10000" prefHeight="10000">
                                 <columns>
                                     <TableColumn text="ID">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="id"/>
+                                        </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn text="First Name">
                                         <cellValueFactory>
