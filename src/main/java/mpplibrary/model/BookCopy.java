@@ -1,9 +1,6 @@
 package mpplibrary.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -12,9 +9,9 @@ public class BookCopy {
     @Id
     @GeneratedValue
     private Long id;
-    private boolean available;
+    private boolean available = true;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Book book;
 
     public Long getId() {

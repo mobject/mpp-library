@@ -3,78 +3,142 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" hgap="10" vgap="10"
+<GridPane alignment="center" hgap="50" vgap="50"
           xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="mpplibrary.controller.AddNewBookController">
+          fx:controller="mpplibrary.controller.AddNewBookController" maxHeight="800">
 
-        <Label text="Add New Book"/>
-        <Label text="ISBN:"
-               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <VBox spacing="20">
+        <HBox spacing="50">
+            <Label text="Add New Book"/>
+        </HBox>
+        <HBox spacing="20" alignment="BASELINE_RIGHT">
+            <Label text="ISBN:"/>
+            <TextField fx:id="isbnField"/>
+        </HBox>
 
-        <TextField fx:id="isbnField"
-                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <HBox spacing="20" alignment="BASELINE_RIGHT">
+            <Label text="Title:"/>
+            <TextField fx:id="titleField"/>
+        </HBox>
 
-        <Label text="Title:"
-               GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <HBox spacing="10">
+            <fx:define>
+                <ToggleGroup  fx:id="checkoutPeriodGroup" />
+            </fx:define>
+            <Label text="Max checkout period:"/>
+                <RadioButton  toggleGroup="$checkoutPeriodGroup"  selected="true" text="17 days" onAction="#maxCheckoutDaySelectionActionFor17"/>
+                <RadioButton toggleGroup="$checkoutPeriodGroup" text="21 days" onAction="#maxCheckoutDaySelectionActionFor21"/>
 
-        <TextField fx:id="titleField"
-                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        </HBox>
 
+        <VBox spacing="50" alignment="BASELINE_RIGHT">
+            <HBox spacing="20">
+                <Label text="Author"/>
+            </HBox>
+        </VBox>
 
-        <Label text="---------- Author 1 -------------" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <Label text="First Name:"
-               GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+        <HBox spacing="20" alignment="BASELINE_RIGHT">
+            <Label text="First Name:"/>
+            <TextField fx:id="authorFirstName"/>
+        </HBox>
 
-        <TextField fx:id="authorFirstName"
-                   GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <HBox spacing="20" alignment="BASELINE_RIGHT">
+            <Label text="Last Name:"/>
+            <TextField fx:id="authorLastName"/>
+        </HBox>
 
-        <Label text="Last Name:"
-               GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+        <HBox spacing="20" alignment="BASELINE_RIGHT">
+            <Label text="Phone:"/>
+            <TextField fx:id="authorPhone"/>
+        </HBox>
 
-        <TextField fx:id="authorLastName"
-                   GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+        <HBox spacing="20" alignment="BASELINE_RIGHT">
+            <Label text="Short Bio:"/>
+            <TextArea fx:id="authorBio" prefWidth="150" prefHeight="150"/>
+        </HBox>
 
-        <Label text="Phone:"
-               GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+        <HBox spacing="20" alignment="BASELINE_RIGHT">
+            <Label text="Street:"/>
+            <TextField fx:id="authorStreet"/>
+        </HBox>
 
-        <TextField fx:id="authorPhone"
-                   GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+        <HBox spacing="20" alignment="BASELINE_RIGHT">
+            <Label text="City:"/>
+            <TextField fx:id="authorCity"/>
+        </HBox>
 
-        <Label  text="Bio:"
-               GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+        <HBox spacing="20" alignment="BASELINE_RIGHT">
+            <Label text="State:"/>
+            <TextField fx:id="authorState"/>
+        </HBox>
 
-        <TextArea fx:id="authorBio" maxWidth="200"
-                  GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+        <HBox spacing="20" alignment="BASELINE_RIGHT">
+            <Label text="Zip Code:"/>
+            <TextField fx:id="authorZipCode"/>
+        </HBox>
 
-        <Label text="Street:"
-               GridPane.columnIndex="0" GridPane.rowIndex="11"/>
-
-        <TextField fx:id="authorStreet"
-                   GridPane.columnIndex="1" GridPane.rowIndex="11"/>
-
-        <Label text="City:"
-               GridPane.columnIndex="0" GridPane.rowIndex="12"/>
-
-        <TextField fx:id="authorCity"
-                   GridPane.columnIndex="1" GridPane.rowIndex="12"/>
-
-        <Label text="State:"
-               GridPane.columnIndex="0" GridPane.rowIndex="13"/>
-
-        <TextField fx:id="authorState"
-                   GridPane.columnIndex="1" GridPane.rowIndex="13"/>
-
-        <Label text="Zip:"
-               GridPane.columnIndex="0" GridPane.rowIndex="14"/>
-
-        <TextField fx:id="authorZipCode"
-                   GridPane.columnIndex="1" GridPane.rowIndex="14"/>
-
-
-        <HBox spacing="20" alignment="bottom_right"
-              GridPane.columnIndex="1" GridPane.rowIndex="16">
+        <HBox spacing="20" alignment="bottom_right">
             <Button fx:id="submitNewBookBtn" text="Submit"
                     onAction="#submitNewBookRequest"/>
         </HBox>
+
+    </VBox>
+
+
+    <!-- Label text="Author 1 " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+    <Label text="First Name:"
+       GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+
+    <TextField fx:id="authorFirstName"
+           GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+    <Label text="Last Name:"
+       GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+
+    <TextField fx:id="authorLastName"
+           GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+    <Label text="Phone:"
+       GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+
+    <TextField fx:id="authorPhone"
+           GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+
+    <Label text="Bio:"
+       GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+
+    <TextArea fx:id="authorBio" maxWidth="200"
+          GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+
+    <Label text="Street:"
+       GridPane.columnIndex="0" GridPane.rowIndex="11"/>
+
+    <TextField fx:id="authorStreet"
+           GridPane.columnIndex="1" GridPane.rowIndex="11"/>
+
+    <Label text="City:"
+       GridPane.columnIndex="0" GridPane.rowIndex="12"/>
+
+    <TextField fx:id="authorCity"
+           GridPane.columnIndex="1" GridPane.rowIndex="12"/>
+
+    <Label text="State:"
+       GridPane.columnIndex="0" GridPane.rowIndex="13"/>
+
+    <TextField fx:id="authorState"
+           GridPane.columnIndex="1" GridPane.rowIndex="13"/>
+
+    <Label text="Zip:"
+       GridPane.columnIndex="0" GridPane.rowIndex="14"/>
+
+    <TextField fx:id="authorZipCode"
+           GridPane.columnIndex="1" GridPane.rowIndex="14"/>
+
+
+    <HBox spacing="20" alignment="bottom_right"
+      GridPane.columnIndex="1" GridPane.rowIndex="16">
+    <Button fx:id="submitNewBookBtn" text="Submit"
+            onAction="#submitNewBookRequest"/>
+    </HBox-->
 
 </GridPane>

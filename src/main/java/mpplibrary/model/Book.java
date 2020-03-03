@@ -1,10 +1,8 @@
 package mpplibrary.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Book implements Serializable {
@@ -12,18 +10,25 @@ public class Book implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
+	@OneToOne( cascade = CascadeType.ALL)
+	private Author author;
 	private String isbn;
 	private String title;
 	private int maxCheckoutDate;
+
+	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+	private List<BookCopy> bookCopies;
 
 	public Book() {
 
 	}
 
-	public Book(int id, String isbn, String title) {
+	public Book(int id, String isbn, String title, Author author) {
 		this.title = title;
 		this.id = id;
 		this.isbn = isbn;
+		this.author = author;
 	}
 
 	public int getId() {
@@ -61,5 +66,21 @@ public class Book implements Serializable {
 
 	public int getMaxCheckoutDate() {
 		return maxCheckoutDate;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
+
+	public List<BookCopy> getBookCopies() {
+		return bookCopies;
+	}
+
+	public void setBookCopies(List<BookCopy> bookCopies) {
+		this.bookCopies = bookCopies;
 	}
 }
