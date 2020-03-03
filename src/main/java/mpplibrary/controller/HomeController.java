@@ -33,7 +33,7 @@ public class HomeController {
     }
 
     public void addBookAction(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/add_book.fxml"));
+        FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/add_book.fxml"));
         GridPane gridPane = fxmlLoader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(gridPane, 800, 500);
@@ -43,7 +43,7 @@ public class HomeController {
     }
 
     public void editBookAction(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/lookup_book_for_edit.fxml"));
+        FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/lookup_book_for_edit.fxml"));
         GridPane gridPane = fxmlLoader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(gridPane, 800, 500);
@@ -53,7 +53,7 @@ public class HomeController {
     }
 
     public void addBookCopyAction(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/lookup_book_for_add_copy.fxml"));
+        FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/lookup_book_for_add_copy.fxml"));
         GridPane gridPane = fxmlLoader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(gridPane, 800, 500);

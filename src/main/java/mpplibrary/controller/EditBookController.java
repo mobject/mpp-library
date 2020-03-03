@@ -9,9 +9,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mpplibrary.MPPFXMLLoader;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@Component
 public class EditBookController {
     public TextField authorField;
     public TextField isbnField;
@@ -25,13 +28,15 @@ public class EditBookController {
     public TextField authorPhone;
     public TextField authorLastName;
     public TextField authorFirstName;
-    public TextField noOfCopiesField;
+    public TextField noOfNewCopiesField;
+    public TextField bookTitle;
+    public TextField currentNoOfCopies;
 
 
     public void submitLookupBookForEditRequest(ActionEvent actionEvent) throws IOException {
         //TODO Handle submit request.
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/edit_book.fxml"));
+        FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/edit_book.fxml"));
         GridPane gridPane = fxmlLoader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(gridPane, 800, 500);
@@ -47,12 +52,16 @@ public class EditBookController {
     public void submitLookupBookForAddCopyRequest(ActionEvent actionEvent) throws IOException {
         //TODO Handle submit request.
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/add_copy.fxml"));
+        FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/add_copy.fxml"));
         GridPane gridPane = fxmlLoader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(gridPane, 800, 500);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void submitAddCopyRequest(ActionEvent actionEvent) {
+        // TODO Handle submit request.
     }
 }
