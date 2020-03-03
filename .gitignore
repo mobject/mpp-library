@@ -1,1 +1,6 @@
-/bin/
+# Default ignored files
+/workspace.xml
+.idea
+out/
+mpp-library-new.iml
+
