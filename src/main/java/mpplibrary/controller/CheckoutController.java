@@ -19,7 +19,7 @@ public class CheckoutController {
     @FXML
     private TableView checkoutRecordsTableView;
 
-    public void checkOutAction(ActionEvent actionEvent){
+    public void checkOutAction(ActionEvent actionEvent) {
         ObservableList<CheckoutRecordDTO> items = FXCollections.observableArrayList();
         CheckoutRecordDTO dto = new CheckoutRecordDTO();
         Member member = new Member();
