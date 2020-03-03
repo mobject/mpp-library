@@ -1,6 +1,9 @@
-# Default ignored files
-/workspace.xml
+*.iml
+workspace.xml
 .idea
-out/
+.classpath
+.project
+mpp-library.iml
 mpp-library-new.iml
-
+out/
+target/
