@@ -10,8 +10,8 @@
          <children>
             <Button text="Add Book" onAction="#addBookAction"/>
             <Button text="Edit Book" onAction="#editBookAction"/>
-            <Button text="Checkout Book" onAction="#checkoutAction"></Button>
-            <Button text="Add Copy" disable="true"></Button>
+            <Button text="Checkout Book" disable="true"/>
+            <Button text="Add Copy" onAction="#addBookCopyAction"/>
             <Button text="Up Coming Due Date" disable="true"></Button>
          </children>
       </FlowPane>

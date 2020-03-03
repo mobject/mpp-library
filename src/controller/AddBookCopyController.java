@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class EditBookController {
+public class AddBookCopyController {
     public TextField authorField;
     public TextField isbnField;
     public TextField titleField;
@@ -44,15 +44,6 @@ public class EditBookController {
         //TODO Handle submit request.
     }
 
-    public void submitLookupBookForAddCopyRequest(ActionEvent actionEvent) throws IOException {
-        //TODO Handle submit request.
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/add_copy.fxml"));
-        GridPane gridPane = fxmlLoader.load();
-        Stage stage = new Stage();
-        Scene scene = new Scene(gridPane, 800, 500);
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.setScene(scene);
-        stage.show();
+    public void submitLookupBookForAddCopyRequest(ActionEvent actionEvent) {
     }
 }

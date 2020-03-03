@@ -8,7 +8,7 @@
           fx:controller="controller.EditBookController">
 
     <VBox>
-        <Label text="Edit Book"/>
+        <Label text="Add Book Copy"/>
         <HBox spacing="20"
               GridPane.columnIndex="1" GridPane.rowIndex="1">
             <Label text="ISBN:"
@@ -17,7 +17,7 @@
             <TextField fx:id="isbnField"
                        GridPane.columnIndex="1" GridPane.rowIndex="1"/>
             <Button fx:id="submitNewBookBtn" text="Find Book"
-                    onAction="#submitLookupBookRequest"/>
+                    onAction="#submitLookupBookForAddCopyRequest"/>
         </HBox>
     </VBox>
 

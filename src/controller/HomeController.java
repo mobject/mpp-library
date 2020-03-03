@@ -46,13 +46,25 @@ public class HomeController {
     }
 
     public void editBookAction(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/lookup_book.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/lookup_book_for_edit.fxml"));
         GridPane gridPane = fxmlLoader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(gridPane, 800, 500);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void addBookCopyAction(javafx.event.ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/lookup_book_for_add_copy.fxml"));
+        GridPane gridPane = fxmlLoader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(gridPane, 800, 500);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setScene(scene);
+        stage.show();
+
+
     }
     
     public void addMemberAction(javafx.event.ActionEvent actionEvent) throws IOException {
