@@ -1,6 +1,6 @@
 package mpplibrary.service;
 
-import mpplibrary.BookNotFoundException;
+import mpplibrary.exception.BookNotFoundException;
 import mpplibrary.model.Book;
 import mpplibrary.model.BookCopy;
 import mpplibrary.repository.BookCopyRepository;
