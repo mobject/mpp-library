@@ -23,7 +23,7 @@ public class HomeController {
     }
 
     public void checkoutAction(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/checkout.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/checkout.fxml"));
         Stage vBox = fxmlLoader.load();
 //        Stage stage = new Stage();
 //        stage.initModality(Modality.WINDOW_MODAL);

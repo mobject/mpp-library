@@ -6,7 +6,11 @@ public class Member {
 	private String lastName;
 	private String phone;
 	private Address address;
-	
+
+	public Member(){
+
+	}
+
 	public Member(String firstName, String lastName, String phone, Address address) {
 		this.firstName = firstName;
 		this.lastName = lastName;
