@@ -1,4 +1,4 @@
-package main.java.mpplibrary.controller;
+package mpplibrary.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

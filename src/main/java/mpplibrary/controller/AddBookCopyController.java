@@ -1,4 +1,4 @@
-package main.java.mpplibrary.controller;
+package mpplibrary.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +31,7 @@ public class AddBookCopyController {
     public void submitLookupBookForEditRequest(ActionEvent actionEvent) throws IOException {
         //TODO Handle submit request.
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/edit_book.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/edit_book.fxml"));
         GridPane gridPane = fxmlLoader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(gridPane, 800, 500);
