@@ -5,7 +5,7 @@
 
 <GridPane alignment="center" hgap="10" vgap="10"
           xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="main.java.mpplibrary.controller.SystemController">
+          fx:controller="mpplibrary.controller.SystemController">
 
     <Label text="YOUR LIBRARY, WELCOME!"/>
     <Label text="User ID:"

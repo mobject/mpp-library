@@ -1,4 +1,4 @@
-package main.java.mpplibrary.controller;
+package mpplibrary.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +19,7 @@ public class SystemController {
     private Button loginButton;
 
     public void login(javafx.event.ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/home.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/home.fxml"));
         GridPane gridPane = fxmlLoader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(gridPane, 800, 500);
