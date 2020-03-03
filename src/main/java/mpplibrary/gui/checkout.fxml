@@ -14,9 +14,9 @@
                     <HBox alignment="CENTER" spacing="10">
                         <children>
                             <Label>Member ID</Label>
-                            <TextField />
+                            <TextField fx:id="memberIdField"/>
                             <Label>ISBN</Label>
-                            <TextField />
+                            <TextField fx:id="isbnField"/>
                             <Button onAction="#checkOutAction">Checkout</Button>
                         </children>
                     </HBox>
