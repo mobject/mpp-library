@@ -1,4 +1,4 @@
-package main.java.mpplibrary.controller;
+package mpplibrary.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,11 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+@Component
 public class AddNewBookController {
     public TextField authorField;
     public TextField isbnField;
