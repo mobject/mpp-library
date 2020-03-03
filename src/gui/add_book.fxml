@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10"
+          xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="controller.AddNewBookController">
+
+        <Label text="Add New Book"/>
+        <Label text="ISBN:"
+               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+
+        <TextField fx:id="isbnField"
+                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Title:"
+               GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+
+        <TextField fx:id="titleField"
+                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+
+        <Label text="---------- Author 1 -------------" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <Label text="First Name:"
+               GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+
+        <TextField fx:id="authorFirstName"
+                   GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+        <Label text="Last Name:"
+               GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+
+        <TextField fx:id="authorLastName"
+                   GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+        <Label text="Phone:"
+               GridPane.columnIndex="0" GridPane.rowIndex="9"/>
+
+        <TextField fx:id="authorPhone"
+                   GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+
+        <Label  text="Bio:"
+               GridPane.columnIndex="0" GridPane.rowIndex="10"/>
+
+        <TextArea fx:id="authorBio" maxWidth="200"
+                  GridPane.columnIndex="1" GridPane.rowIndex="10"/>
+
+        <Label text="Street:"
+               GridPane.columnIndex="0" GridPane.rowIndex="11"/>
+
+        <TextField fx:id="authorStreet"
+                   GridPane.columnIndex="1" GridPane.rowIndex="11"/>
+
+        <Label text="City:"
+               GridPane.columnIndex="0" GridPane.rowIndex="12"/>
+
+        <TextField fx:id="authorCity"
+                   GridPane.columnIndex="1" GridPane.rowIndex="12"/>
+
+        <Label text="State:"
+               GridPane.columnIndex="0" GridPane.rowIndex="13"/>
+
+        <TextField fx:id="authorState"
+                   GridPane.columnIndex="1" GridPane.rowIndex="13"/>
+
+        <Label text="Zip:"
+               GridPane.columnIndex="0" GridPane.rowIndex="14"/>
+
+        <TextField fx:id="authorZipCode"
+                   GridPane.columnIndex="1" GridPane.rowIndex="14"/>
+
+
+        <HBox spacing="20" alignment="bottom_right"
+              GridPane.columnIndex="1" GridPane.rowIndex="16">
+            <Button fx:id="submitNewBookBtn" text="Submit"
+                    onAction="#submitNewBookRequest"/>
+        </HBox>
+
+</GridPane>

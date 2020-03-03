@@ -3,13 +3,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" gridLinesVisible="false" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeController">
    <children>
       <Label text="BOOK"  GridPane.rowIndex="0" GridPane.columnIndex="0" />
       <FlowPane GridPane.rowIndex="1" hgap="25" vgap="10">
          <children>
-            <Button text="Add Book" disable="true"></Button>
-            <Button text="Edit Book" disable="true"></Button>
+            <Button text="Add Book" onAction="#addBookAction"/>
+            <Button text="Edit Book" onAction="#editBookAction"/>
             <Button text="Checkout Book" onAction="#checkoutAction"></Button>
             <Button text="Add Copy" disable="true"></Button>
             <Button text="Up Coming Due Date" disable="true"></Button>
