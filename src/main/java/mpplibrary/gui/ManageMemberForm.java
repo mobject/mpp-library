@@ -37,10 +37,13 @@ public class ManageMemberForm extends Stage {
 	//Error constant
 	protected static final String ERROR_EMPTY_FIELD = " is empty.";
 	protected static final String ERROR_EXISTED_MEMBER = "Member is existed and cannot create";
-	private ManageMemberController manageMemberController =  new ManageMemberController();
-	
+	protected static final String ADD_SUCCESSFULLY = "Added member ID <?> successfully";
+	ManageMemberController manageMemberController = new ManageMemberController();
 	
 	public ManageMemberForm() {
+		//initial Controller
+		manageMemberController = SpringBeansUtil.getBean(ManageMemberController.class);
+		
 		GridPane gridPane = createMemberFormPane();
 		addUIControls(gridPane);
 		Scene scene = new Scene(gridPane, 800, 500);
@@ -67,10 +70,8 @@ public class ManageMemberForm extends Stage {
 		Label lbl_memberId = new Label(LBL_MEMBER_ID);
 		gridPane.add(lbl_memberId, 0, row);
 		TextField txtMemberId = new TextField();
-		//int latestMemberId = manageMemberController.getLastestMemberId();
-		//txtMemberId.setText("Member "+ latestMemberId);
-		txtMemberId.setText("Member ");
-		txtMemberId.setVisible(false);
+		txtMemberId.setText("Member " + (manageMemberController.getLatestMemberId()+1));
+		txtMemberId.setDisable(true);
 		gridPane.add(txtMemberId, 1, row);
 		row++;
 		// First Name
@@ -125,7 +126,6 @@ public class ManageMemberForm extends Stage {
         // Message place
         final Text msgTarget = new Text();
         gridPane.add(msgTarget, 1, row);
-        msgTarget.setFill(Color.FIREBRICK);
         //add event for button
         btnCreate.setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -147,15 +147,24 @@ public class ManageMemberForm extends Stage {
     				if (isMemberExist(txtFirstName.getText())) {
     					msgTarget.setText(ERROR_EXISTED_MEMBER);
     				} else {
-    					// save to file
-						ManageMemberController controller = SpringBeansUtil.getBean(ManageMemberController.class);
-						//TODO call save user in Controller
-						//Address address = new Address(txtStreet.getText().trim(), txtCity.getText().trim(), txtState.getText().trim(), Integer.parseInt(txtZip.getText().trim()));
-    					//Member member = new Member(txtFirstName.getText().trim(), txtLastName.getText().trim(), txtPhone.getText().trim(), address);
-    					//manageMemberController.insertMember(member);
-    					
-    					//for (Member mem : members)
-    					//	System.out.println(mem.toString());
+    					// save to file						
+						manageMemberController.addMember(txtFirstName.getText(), txtLastName.getText(), txtStreet.getText(),
+											txtCity.getText(), txtState.getText(), txtZip.getText(), txtPhone.getText());
+						
+						msgTarget.setFill(Color.BLUE);
+						msgTarget.setText(ADD_SUCCESSFULLY.replace("?", String.valueOf(manageMemberController.getLatestMemberId())));
+						
+						//clear fields to blank
+						txtFirstName.clear();
+						txtLastName.clear();
+						txtStreet.clear();
+						txtCity.clear();
+						txtState.clear();
+						txtZip.clear();
+						txtPhone.clear();
+						txtFirstName.requestFocus();
+						txtMemberId.setText("Member " + (manageMemberController.getLatestMemberId()+1));
+						
     				}
                 }
 				
@@ -169,7 +178,8 @@ public class ManageMemberForm extends Stage {
 		if (txtField.getText().isEmpty()) {
 			txtField.requestFocus();
 			msgTarget.setText(fieldName + ERROR_EMPTY_FIELD);
-            return true;
+			 msgTarget.setFill(Color.FIREBRICK);
+			return true;
 		} else {
 			return false;
 		}
