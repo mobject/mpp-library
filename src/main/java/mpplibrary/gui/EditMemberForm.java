@@ -16,6 +16,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mpplibrary.controller.ManageMemberController;
+import mpplibrary.model.Member;
+import mpplibrary.util.SpringBeansUtil;
 
 public class EditMemberForm extends Stage {
 
@@ -35,12 +37,16 @@ public class EditMemberForm extends Stage {
 	protected static final String BTN_EDIT = "EDIT";
 	//Error constant
 	protected static final String ERROR_EMPTY_FIELD = " is empty.";
-	protected static final String ERROR_EXISTED_MEMBER = "Member is existed and cannot create";
+	protected static final String ERROR_EXISTED_MEMBER = "Member does not exist";
 	private static final String BTN_SEARCH = "SEARCH";
-	private ManageMemberController manageMemberController =  new ManageMemberController();
+	protected static final String UPDATE_SUCCESSFULLY = "Updated member <?> successfully";
+	private ManageMemberController manageMemberController = null;
 	int row = 0;
 	
 	public EditMemberForm() {
+		//Initilize Controller
+		manageMemberController = SpringBeansUtil.getBean(ManageMemberController.class);
+		
 		GridPane gridPane = createMemberFormPane();
 		addUIControls(gridPane);
 		Scene scene = new Scene(gridPane, 800, 500);
@@ -143,7 +149,7 @@ public class EditMemberForm extends Stage {
 		        // Message place
 		        final Text msgTarget2 = new Text();
 		        gridPane.add(msgTarget2, 1, row);
-		        msgTarget2.setFill(Color.FIREBRICK);
+		        
 		        
 		      //add event for search button
 		        btnEdit.setOnAction(new EventHandler<ActionEvent>() {
@@ -161,9 +167,11 @@ public class EditMemberForm extends Stage {
 		                } else if (ManageMemberForm.checkTextBoxEmpty(txtZip, msgTarget2, LBL_ZIP)) {
 		                } else if (ManageMemberForm.checkTextBoxEmpty(txtPhone, msgTarget2, LBL_PHONE)) {
 		                } else {
-		                	//TODO
 		                	//EDIT member
-		                	editMember(txtMemberId.getText(), txtFirstName, txtLastName, txtPhone, txtCity, txtStreet, txtState, txtZip);
+		                	editMember(txtMemberId.getText(), txtFirstName.getText(), txtLastName.getText(), txtPhone.getText(), txtCity.getText(), txtStreet.getText(), txtState.getText(), txtZip.getText());
+		                	msgTarget2.setFill(Color.BLUE);
+		        			msgTarget2.setText(UPDATE_SUCCESSFULLY.replace("?", String.valueOf(txtMemberId.getText())));
+		        	
 		                }	
 		        	}
 
@@ -172,26 +180,23 @@ public class EditMemberForm extends Stage {
 		
 		
 		
-		
         //add event for search button
         btnSearch.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				msgTarget.setFill(Color.FIREBRICK);
-
+				msgTarget2.setText("");
 				if (ManageMemberForm.checkTextBoxEmpty(txtMemberId, msgTarget, LBL_MEMBER_ID)) {
                 } else {
                 	msgTarget.setText("");
                 	txtMemberIdDisabled.setText(txtMemberId.getText());
+                	
+                	
                 	//Check if MemberID not exist
-    				if (isMemberExist(txtMemberId.getText())) {
+    				if (!isMemberExist(txtMemberId.getText())) {
     					msgTarget.setText(ERROR_EXISTED_MEMBER);
+    					msgTarget2.setFill(Color.FIREBRICK);
     				} else {
-    					//TODO	
-    					
-    					System.out.println("Search member ID");
-    					//TODO
     					//Fill data to edit 
     					fillDataToForm(txtMemberId.getText(), txtFirstName, txtLastName, txtPhone, txtCity, txtStreet, txtState, txtZip);
     					
@@ -201,47 +206,39 @@ public class EditMemberForm extends Stage {
 				
         	}
 
-			
-
-			
 		});
 
 	}
 	
 	private void fillDataToForm(String memberId, TextField txtFirstName, TextField txtLastName, TextField txtPhone,
 			TextField txtCity, TextField txtStreet, TextField txtState, TextField txtZip) {
-		// TODO Auto-generated method stub
-		/*
-		Member member = manageMemberController.getById(memberId);
-		txtFirstName.setText(member.getFirstName());
-		txtLastName.setText(member.getLastName());
-		txtPhone.setText(member.getPhone());
-		txtStreet.setText(member.getAddress().getStreet());
-		txtCity.setText(member.getAddress().getCity());
-		txtState.setText(member.getAddress().getState());
-		txtZip.setText(String.valueOf(member.getAddress().getZip()));
-		*/
-		txtFirstName.setText("dummy");
-		txtLastName.setText("dummy");
-		txtPhone.setText("dummy");
-		txtStreet.setText("dummy");
-		txtCity.setText("dummy");
-		txtState.setText("dummy");
-		txtZip.setText("dummy");
+		
+		//Member member = manageMemberController.findById(Integer.parseInt(memberId)).orElse(null);
+		Member member = manageMemberController.getMemberById(Integer.parseInt(memberId));
+		
+		if (member!=null) {
+			txtFirstName.setText(member.getFirstName());
+			txtLastName.setText(member.getLastName());
+			txtPhone.setText(member.getPhone());
+			txtStreet.setText(member.getAddress().getStreet());
+			txtCity.setText(member.getAddress().getCity());
+			txtState.setText(member.getAddress().getState());
+			txtZip.setText(String.valueOf(member.getAddress().getZip()));
+		}
 		
 	}
 	
 
 	private boolean isMemberExist(String memberId) {
-		//TODO
-		return false;
+		return manageMemberController.isMemberExist(Integer.parseInt(memberId));
 	}
 	
-	private void editMember(String text, TextField txtFirstName, TextField txtLastName,
-			TextField txtPhone, TextField txtCity, TextField txtStreet, TextField txtState,
-			TextField txtZip) {
-		// TODO Auto-generated method stub
-		
+	private void editMember(String memberId, String firstName, String lastName,
+			String phone, String city, String street, String state, String zip) {
+			manageMemberController.updateMember(memberId, firstName, lastName,
+					phone, city, street, state, zip);
+
+			
 	}
 	
 	

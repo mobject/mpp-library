@@ -1,18 +1,28 @@
 package mpplibrary.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Address")
 public class Address {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
 	private String street;
 	private String city;
 	private String state;
 	private int zip;
 	
-	public Address(String street, String city, String state, int zip) {
-		this.street = street;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-	}
+	@OneToOne(mappedBy = "address")
+	private Member memberId;
+	
 	public int getId() {
 		return id;
 	}
@@ -43,9 +53,11 @@ public class Address {
 	public void setZip(int zip) {
 		this.zip = zip;
 	}
-	
-	
-	
-	
+	public Member getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(Member memberId) {
+		this.memberId = memberId;
+	}
 	
 }

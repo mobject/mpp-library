@@ -2,13 +2,13 @@ package mpplibrary.model;
 
 import java.io.Serializable;
 
-public class Book extends Publication implements Serializable {
+public class Book  implements Serializable {
 	private int id;
 	private String isbn;
 	private boolean available;
 
 	public Book(int id, String isbn, String title) {
-		super(title);
+		//super(title);
 		this.id = id;
 		this.isbn = isbn;
 	}

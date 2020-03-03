@@ -7,7 +7,11 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -35,31 +39,7 @@ public class CheckoutRecordForm extends Stage {
 
 	private static final String FONT = "Tahoma";
 	
-	// attributes
-	//private TableView<CheckoutRecordForm> table = new TableView<>();
 	private TableView<CheckoutHistory> table = new TableView<>();
-	
-	/*
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
-	@Override
-	public void start(Stage stage) throws Exception {
-		stage.setTitle(LBL_CHECKOUT_RECORD);
-		//stage.setWidth(900);
-        //stage.setHeight(500);
-		//stage.setResizable(false);
-	    //stage.setMaximized(true);
-	    //stage.setFullScreen(true);
-		GridPane gridPane = createMemberFormPane();
-		addUIControls(gridPane);
-		Scene scene = new Scene(gridPane, 800, 500);
-        stage.setScene(scene);
-		stage.show();
-		
-	}
-	*/
 	
 	public CheckoutRecordForm() {
 		GridPane gridPane = createMemberFormPane();
