@@ -1,17 +1,15 @@
 package mpplibrary;
 
-import java.io.IOException;
-
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import mpplibrary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import mpplibrary.service.UserService;
+import java.io.IOException;
 
 @Component
 public class StageInitializer implements ApplicationListener<LibraryApplication.StageReadyEvent> {
@@ -30,7 +28,7 @@ public class StageInitializer implements ApplicationListener<LibraryApplication.
 		Parent root;
 
 		try {
-			root = FXMLLoader.load(getClass().getResource("gui/login.fxml"));
+			root = MPPFXMLLoader.load(getClass().getResource("gui/login.fxml"));
 			primaryStage.setTitle("Library");
 			primaryStage.setScene(new Scene(root, LibraryApplication.WINDOW_WIDTH, LibraryApplication.WINDOW_HEIGHT));
 			primaryStage.show();

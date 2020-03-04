@@ -12,15 +12,16 @@ import mpplibrary.MPPFXMLLoader;
 import mpplibrary.gui.CheckoutRecordForm;
 import mpplibrary.gui.EditMemberForm;
 import mpplibrary.gui.ManageMemberForm;
+import org.springframework.stereotype.Component;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
+@Component
 public class HomeController {
 
     @FXML
     private Button checkoutButton;
-
 
 
     public void checkoutPressed(ActionEvent actionEvent) throws IOException {
@@ -67,26 +68,26 @@ public class HomeController {
 
 
     }
-    
-    
+
+
     //Member actions
     public void addMemberAction(javafx.event.ActionEvent actionEvent) throws IOException {
         Stage stage = new ManageMemberForm();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
     }
-    
+
     public void editMemberAction(javafx.event.ActionEvent actionEvent) throws IOException {
         Stage stage = new EditMemberForm();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
     }
-    
+
     //Checkout Record History
     public void checkoutRecordAction(javafx.event.ActionEvent actionEvent) throws IOException {
         Stage stage = new CheckoutRecordForm();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
     }
-    
+
 }
