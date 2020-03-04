@@ -1,7 +1,7 @@
 package mpplibrary.dto;
 
 public class BookDto {
-    private int id;
+    private Integer id;
     private String isbn;
     private String title;
     private int maxCheckoutPeriodInDays;
@@ -12,7 +12,7 @@ public class BookDto {
         this.maxCheckoutPeriodInDays = maxCheckoutPeriodInDays;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
