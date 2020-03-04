@@ -12,6 +12,8 @@ import mpplibrary.MPPFXMLLoader;
 import mpplibrary.gui.CheckoutRecordForm;
 import mpplibrary.gui.EditMemberForm;
 import mpplibrary.gui.ManageMemberForm;
+import mpplibrary.service.UserSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.awt.event.ActionEvent;
@@ -21,11 +23,37 @@ import java.io.IOException;
 public class HomeController {
 
     @FXML
+    public Button addBookCopyButton;
+    @FXML
+    public Button addMemberButton;
+    @FXML
+    public Button editMemberButton;
+
+    @FXML
+    public Button addBookButton;
+    @FXML
+    public Button editBookButton;
+    @FXML
+    public Button checkoutRecordsButton;
+    @FXML
     private Button checkoutButton;
 
+    @Autowired
+    private UserSession userSession;
 
-    public void checkoutPressed(ActionEvent actionEvent) throws IOException {
+    @FXML
+    void initialize(){
+        if (userSession.hasAdminPermission()){
+            checkoutButton.setDisable(true);
+            checkoutRecordsButton.setDisable(true);
+        }
 
+        if (userSession.hasLibrarianPermission()){
+            editBookButton.setDisable(true);
+            addBookButton.setDisable(true);
+            addMemberButton.setDisable(true);
+            editMemberButton.setDisable(true);
+        }
     }
 
     public void checkoutAction(javafx.event.ActionEvent actionEvent) throws IOException {

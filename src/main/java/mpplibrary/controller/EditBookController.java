@@ -1,6 +1,7 @@
 package mpplibrary.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +18,7 @@ import java.io.IOException;
 @Component
 public class EditBookController {
     public TextField authorField;
+    @FXML
     public TextField isbnField;
     public TextField titleField;
     public Button submitNewBookBtn;
@@ -53,7 +55,10 @@ public class EditBookController {
         //TODO Handle submit request.
 
         FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/add_copy.fxml"));
+
         GridPane gridPane = fxmlLoader.load();
+        AddBookCopyController controller = fxmlLoader.<AddBookCopyController>getController();
+        controller.initParam(isbnField.getText());
         Stage stage = new Stage();
         Scene scene = new Scene(gridPane, 800, 500);
         stage.initModality(Modality.WINDOW_MODAL);
