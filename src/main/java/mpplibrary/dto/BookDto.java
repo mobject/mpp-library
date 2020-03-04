@@ -5,11 +5,20 @@ public class BookDto {
     private String isbn;
     private String title;
     private int maxCheckoutPeriodInDays;
+    private AuthorDto authorDto;
 
     public BookDto(String isbn, String title, int maxCheckoutPeriodInDays) {
         this.isbn = isbn;
         this.title = title;
         this.maxCheckoutPeriodInDays = maxCheckoutPeriodInDays;
+    }
+
+    public AuthorDto getAuthorDto() {
+        return authorDto;
+    }
+
+    public void setAuthorDto(AuthorDto authorDto) {
+        this.authorDto = authorDto;
     }
 
     public Integer getId() {
