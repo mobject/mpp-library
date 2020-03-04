@@ -5,7 +5,7 @@
 
 <GridPane alignment="center" hgap="10" vgap="10"
           xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="main.java.mpplibrary.controller.EditBookController">
+          fx:controller="mpplibrary.controller.EditBookController">
 
     <VBox  spacing="20">
         <Label text="Add Book Copy"/>
@@ -19,17 +19,28 @@
 
         <HBox spacing="20"
               GridPane.columnIndex="1" GridPane.rowIndex="1">
-            <Label  text="Enter No. Of Copies:"
-                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-            <TextField fx:id="noOfCopiesField"
+            <Label  text="Title:"
+                    GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="bookTitle" editable="false" disable="true"
                        GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         </HBox>
 
-        <HBox spacing="20" alignment="BASELINE_RIGHT"
+        <HBox spacing="20"
               GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label  text="Current No. of Copies:"
+                    GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField prefWidth="80" fx:id="currentNoOfCopies" editable="false" disable="true"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        </HBox>
 
-            <Button fx:id="submitNewBookBtn" text="Add Copy"
-                    onAction="#submitLookupBookForAddCopyRequest"/>
+        <HBox spacing="20"
+              GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label  text="No. Of New Copies:"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField prefWidth="80" fx:id="noOfNewCopiesField"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Button fx:id="submitNewBookBtn" text="Add"
+                    onAction="#submitAddCopyRequest"/>
         </HBox>
     </VBox>
 

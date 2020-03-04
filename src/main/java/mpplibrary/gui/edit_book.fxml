@@ -5,7 +5,7 @@
 
 <GridPane alignment="center" hgap="10" vgap="10"
           xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="main.java.mpplibrary.controller.EditBookController">
+          fx:controller="mpplibrary.controller.EditBookController">
 
         <Label text="Edit Book"/>
         <Label text="ISBN:"

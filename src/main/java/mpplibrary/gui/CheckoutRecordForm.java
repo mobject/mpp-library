@@ -124,7 +124,7 @@ public class CheckoutRecordForm extends Stage {
 		});
 		
 		//TableView section
-		table.setPrefWidth(10000);
+		table.setPrefWidth(500);
 		final Label label = new Label(LBL_HISTORY_CHECKOUT);
         label.setFont(new Font(FONT, 15));
         label.setTextFill(Color.BLUEVIOLET);

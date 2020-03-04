@@ -9,9 +9,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mpplibrary.MPPFXMLLoader;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@Component
 public class AddBookCopyController {
     public TextField authorField;
     public TextField isbnField;
@@ -31,7 +34,7 @@ public class AddBookCopyController {
     public void submitLookupBookForEditRequest(ActionEvent actionEvent) throws IOException {
         //TODO Handle submit request.
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/gui/edit_book.fxml"));
+        FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/edit_book.fxml"));
         GridPane gridPane = fxmlLoader.load();
         Stage stage = new Stage();
         Scene scene = new Scene(gridPane, 800, 500);

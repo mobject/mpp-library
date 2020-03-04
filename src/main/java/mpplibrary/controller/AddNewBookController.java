@@ -1,40 +1,50 @@
 package mpplibrary.controller;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import mpplibrary.dto.AuthorDto;
+import mpplibrary.dto.BookDto;
+import mpplibrary.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
+@Component
 public class AddNewBookController {
-    public TextField authorField;
     public TextField isbnField;
     public TextField titleField;
-    public Button submitNewBookBtn;
-    public TextField authorZipCode;
-    public TextField authorState;
-    public TextField authorCity;
-    public TextField authorStreet;
-    public TextArea authorBio;
-    public TextField authorPhone;
-    public TextField authorLastName;
-    public TextField authorFirstName;
+    private int maxCheckoutPeriodInDays = 17;
 
+    public TextField authorFirstName;
+    public TextField authorLastName;
+    public TextField authorPhone;
+    public TextArea authorBio;
+
+    public TextField authorStreet;
+    public TextField authorCity;
+    public TextField authorState;
+    public TextField authorZipCode;
+
+
+    @Autowired
+    private BookService bookService;
 
     public void submitNewBookRequest(javafx.event.ActionEvent actionEvent) throws IOException {
-        //TODO Handle submit new book request.
+        BookDto bookDto = new BookDto(isbnField.getText(), titleField.getText(), maxCheckoutPeriodInDays);
+        AuthorDto authorDto = new AuthorDto(authorFirstName.getText(), authorLastName.getText(), authorPhone.getText(), authorBio.getText(), authorStreet.getText(), authorCity.getText(), authorState.getText(), Integer.parseInt(authorZipCode.getText()));
+       bookService.addBook(bookDto, authorDto);
     }
 
 
+    public void maxCheckoutDaySelectionActionFor17(ActionEvent actionEvent) {
+        this.maxCheckoutPeriodInDays = 17;
+    }
 
+    public void maxCheckoutDaySelectionActionFor21(ActionEvent actionEvent) {
+        this.maxCheckoutPeriodInDays = 21;
+    }
 }
