@@ -57,4 +57,11 @@ public class CheckoutService {
 		return checkoutRecordRepository.findAllByMemberId(memberId);
 	}
 
+	public boolean existByIdMember(int memberId) {
+		if (checkoutRecordRepository.existByIdMember(memberId)>0)
+			return true;
+		else
+			return false;
+	}
+
 }

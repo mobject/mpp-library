@@ -1,5 +1,10 @@
 package mpplibrary.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,11 +14,6 @@ import javafx.scene.control.TextField;
 import mpplibrary.dto.CheckoutRecordDTO;
 import mpplibrary.model.CheckoutRecord;
 import mpplibrary.service.CheckoutService;
-
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Component
 public class CheckoutController {
@@ -48,6 +48,10 @@ public class CheckoutController {
     public List<CheckoutRecord> findCheckoutRecordsByMemberId(int memberId) {
     	return checkoutService.findCheckoutRecordsByMemberId(memberId);
     	
+    }
+    
+    public boolean existByIdMember(int memberId) {
+    	return checkoutService.existByIdMember(memberId);
     }
     
 
