@@ -12,6 +12,7 @@ public class Author {
 	private String firstName;
 	private String lastName;
 	private String phone;
+	@Column(name="bio")
 	private String shortBio;
 	
 		

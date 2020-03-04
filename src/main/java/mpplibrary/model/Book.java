@@ -1,23 +1,32 @@
 package mpplibrary.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 @Entity
-public class Book implements Serializable {
+public class Book  {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@OneToOne( cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idAuthor")
 	private Author author;
 	private String isbn;
 	private String title;
 	private int maxCheckoutDate;
 
-	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)//(mappedBy = "book", cascade = CascadeType.ALL)
 	private List<BookCopy> bookCopies;
 
 	public Book() {

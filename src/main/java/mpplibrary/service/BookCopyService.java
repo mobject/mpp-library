@@ -1,6 +1,6 @@
 package mpplibrary.service;
 
-import mpplibrary.BookNotFoundException;
+import mpplibrary.exception.BookNotFoundException;
 import mpplibrary.model.Book;
 import mpplibrary.model.BookCopy;
 import mpplibrary.repository.BookCopyRepository;
@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -21,13 +23,17 @@ public class BookCopyService {
     private BookRepository bookRepository;
 
     public void addBookCopy(String isbn, int numberOfCopies) throws BookNotFoundException {
-        Book book = bookRepository.findByIsbn(isbn).orElseThrow(BookNotFoundException::new);
+        Book book = bookRepository.findFirstByIsbn(isbn).orElseThrow(BookNotFoundException::new);
         Iterable<BookCopy> bookCopies = buildBookCopies(book, numberOfCopies);
         bookCopyRepository.saveAll(bookCopies);
     }
 
-    public BookCopy getAvailableBookCopy(String isbn) {
+    public Optional<BookCopy> getAvailableBookCopy(String isbn) {
         return bookCopyRepository.findFirstByAvailableAndBookIsbn(true, isbn);
+    }
+
+    public List<BookCopy> findAllBookCopy(String isbn) {
+        return bookCopyRepository.findAllByBookIsbn(isbn);
     }
 
     private Iterable<BookCopy> buildBookCopies(Book book, int numberOfCopies) {

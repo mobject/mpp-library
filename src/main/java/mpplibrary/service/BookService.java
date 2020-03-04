@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -97,5 +98,9 @@ public class BookService {
         return bookCopies.stream().map(bookCopy -> {
             return new BookCopyDto(bookCopy.getId(), bookCopy.getBook().getTitle(), isbn, bookCopy.isAvailable());
         }).collect(Collectors.toList());
+    }
+
+    public Optional<Book> findBookByIsbn(String isbn) {
+        return bookRepository.findFirstByIsbn(isbn);
     }
 }

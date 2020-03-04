@@ -1,5 +1,6 @@
 package mpplibrary.dto;
 
+import mpplibrary.model.Author;
 import mpplibrary.model.Book;
 import mpplibrary.model.BookCopy;
 import mpplibrary.model.CheckoutRecord;
@@ -50,6 +51,22 @@ public class CheckoutRecordDTO {
 
     public int getId() {
         return checkoutRecord.getId();
+    }
+    
+    public Author getAuthor() {
+    	return checkoutRecord.getBookCopy().getBook().getAuthor();
+    }
+    
+    public String getFirstName() {
+    	return this.getAuthor().getFirstName();
+    }
+    
+    public String getLastName() {
+    	return this.getAuthor().getLastName();
+    }
+    
+    public String getAuthorName() {
+    	return this.getFirstName() + " " + this.getLastName();
     }
 
 }

@@ -8,19 +8,19 @@
       <Label text="BOOK"  GridPane.rowIndex="0" GridPane.columnIndex="0" />
       <FlowPane GridPane.rowIndex="1" hgap="25" vgap="10">
          <children>
-            <Button text="Add Book" onAction="#addBookAction"/>
-            <Button text="Edit Book" onAction="#editBookAction"/>
-            <Button text="Checkout Book" disable="true"/>
-            <Button text="Add Copy" onAction="#addBookCopyAction"/>
+            <Button text="Add Book" onAction="#addBookAction" fx:id="addBookButton"/>
+            <Button text="Edit Book" onAction="#editBookAction" fx:id="editBookButton"/>
+            <Button text="Checkout Book" onAction="#checkoutAction" fx:id="checkoutButton"/>
+            <Button text="Add Copy" onAction="#addBookCopyAction" fx:id="addBookCopyButton"/>
             <Button text="Up Coming Due Date" disable="true"></Button>
          </children>
       </FlowPane>
       <Label text="MEMBER" GridPane.rowIndex="2" GridPane.columnIndex="0"  />
       <FlowPane GridPane.rowIndex="3" hgap="25" vgap="10">
          <children>
-            <Button text="Add" onAction="#addMemberAction"></Button>
-            <Button text="Edit" onAction="#editMemberAction"></Button>
-            <Button text="Checkout Records" onAction="#checkoutRecordAction"></Button>
+            <Button text="Add" onAction="#addMemberAction" fx:id="addMemberButton"></Button>
+            <Button text="Edit" onAction="#editMemberAction" fx:id="editMemberButton"></Button>
+            <Button text="Checkout Records" onAction="#checkoutRecordAction" fx:id="checkoutRecordsButton"></Button>
          </children>
       </FlowPane>
    </children>
