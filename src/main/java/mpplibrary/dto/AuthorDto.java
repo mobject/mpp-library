@@ -94,4 +94,5 @@ public class AuthorDto {
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
+
 }

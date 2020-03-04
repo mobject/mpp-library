@@ -1,5 +1,6 @@
 package mpplibrary.repository;
 
+import mpplibrary.model.Author;
 import mpplibrary.model.Book;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -7,7 +8,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface BookRepository extends CrudRepository<Book, Integer> {
-    Optional<Book> findFirstByIsbn(String isbn);
-    Optional<Book> findByIsbn(String isbn);
+public interface AuthorRepository extends CrudRepository<Author, Integer> {
 }
