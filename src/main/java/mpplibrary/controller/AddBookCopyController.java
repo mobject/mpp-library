@@ -1,52 +1,61 @@
 package mpplibrary.controller;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import mpplibrary.MPPFXMLLoader;
+import mpplibrary.exception.BookNotFoundException;
+import mpplibrary.gui.MessagePopup;
+import mpplibrary.model.Book;
+import mpplibrary.model.BookCopy;
+import mpplibrary.service.BookCopyService;
+import mpplibrary.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
+import java.util.List;
 
 @Component
 public class AddBookCopyController {
-    public TextField authorField;
+    @FXML
     public TextField isbnField;
-    public TextField titleField;
+    @FXML
     public Button submitNewBookBtn;
-    public TextField authorZipCode;
-    public TextField authorState;
-    public TextField authorCity;
-    public TextField authorStreet;
-    public TextArea authorBio;
-    public TextField authorPhone;
-    public TextField authorLastName;
-    public TextField authorFirstName;
-    public TextField noOfCopiesField;
+    @FXML
+    public TextField bookTitle;
+    public TextField currentNoOfCopies;
+    public TextField noOfNewCopiesField;
 
+    @Autowired
+    private BookService bookService;
 
-    public void submitLookupBookForEditRequest(ActionEvent actionEvent) throws IOException {
-        //TODO Handle submit request.
+    @Autowired
+    private BookCopyService bookCopyService;
 
-        FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/edit_book.fxml"));
-        GridPane gridPane = fxmlLoader.load();
-        Stage stage = new Stage();
-        Scene scene = new Scene(gridPane, 800, 500);
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.setScene(scene);
-        stage.show();
+    private String isbn;
+
+    public void initParam(String isbn){
+        this.isbn = isbn;
+        try {
+            Book book = bookService.findBookByIsbn(isbn).orElseThrow(BookNotFoundException::new);
+            List<BookCopy> allBookCopy = bookCopyService.findAllBookCopy(isbn);
+            bookTitle.setText(book.getTitle());
+            isbnField.setText(book.getIsbn());
+            currentNoOfCopies.setText(String.valueOf(allBookCopy.size()));
+        } catch (BookNotFoundException e) {
+            MessagePopup.displayError(e.getMessage());
+        }
     }
 
-    public void submitEditBookRequest(ActionEvent actionEvent) throws IOException {
-        //TODO Handle submit request.
-    }
 
-    public void submitLookupBookForAddCopyRequest(ActionEvent actionEvent) {
+    public void submitAddCopyRequest(ActionEvent actionEvent) throws Exception {
+        try {
+            Integer integer = Integer.valueOf(noOfNewCopiesField.getText());
+            bookCopyService.addBookCopy(isbn, integer);
+            MessagePopup.displaySuccess("Book copies has been added successfully");
+        }catch (NumberFormatException ex){
+            MessagePopup.displayError("Number of Copies is invalid");
+        }
+
     }
 }

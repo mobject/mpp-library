@@ -2,7 +2,11 @@ package mpplibrary.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
+import mpplibrary.exception.BookNotFoundException;
+import mpplibrary.exception.MemberNotFoundException;
+import mpplibrary.repository.BookCopyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,46 +19,48 @@ import mpplibrary.repository.CheckoutRecordRepository;
 @Service
 public class CheckoutService {
 
-	@Autowired
-	private CheckoutRecordRepository checkoutRecordRepository;
+    @Autowired
+    private CheckoutRecordRepository checkoutRecordRepository;
 
-	@Autowired
-	private ManageMemberService memberService;
+    @Autowired
+    private ManageMemberService memberService;
 
-	@Autowired
-	private BookRepository bookRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
-	@Autowired
-	private BookCopyService bookCopyService;
+    @Autowired
+    private BookCopyRepository bookCopyRepository;
 
-	public CheckoutRecord checkoutBook(String isbn, int memberId) {
-//        //Build test data
-//        Book book = new Book();
-//        book.setIsbn(isbn);
-//        book.setTitle("Test book");
-//        book.setMaxCheckoutDate(5);
-//        Book savedBook = bookRepository.save(book);
-//
-//        try {
-//            bookCopyService.addBookCopy(savedBook.getIsbn(), 4);
-//        } catch (BookNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
+    @Autowired
+    private BookCopyService bookCopyService;
 
-		BookCopy availableBookCopy = bookCopyService.getAvailableBookCopy(isbn);
+    public CheckoutRecord checkoutBook(String isbn, int memberId) throws Exception {
+        BookCopy availableBookCopy = bookCopyService.getAvailableBookCopy(isbn).orElseThrow(BookNotFoundException::new);
+        Member member = memberService.findById(memberId).orElseThrow(MemberNotFoundException::new);
+        CheckoutRecord checkoutRecord = this.buildCheckoutRecord(availableBookCopy, member);
+        availableBookCopy.setAvailable(false);
+        bookCopyRepository.save(availableBookCopy);
+        return checkoutRecordRepository.save(checkoutRecord);
+    }
 
-		CheckoutRecord checkoutRecord = new CheckoutRecord();
-		checkoutRecord.setBookCopy(availableBookCopy);
-		checkoutRecord.setCheckoutDate(LocalDate.now());
-		checkoutRecord.setDueDate(
-				checkoutRecord.getCheckoutDate().plusDays(availableBookCopy.getBook().getMaxCheckoutDate()));
-		Member member = memberService.findById(memberId).get();
-		checkoutRecord.setMember(member);
-		return checkoutRecordRepository.save(checkoutRecord);
-	}
+    public List<CheckoutRecord> findCheckoutRecordsByMemberId(int memberId) {
+        return checkoutRecordRepository.findAllByMemberId(memberId);
+    }
 
-	public List<CheckoutRecord> findCheckoutRecordsByMemberId(int memberId) {
-		return checkoutRecordRepository.findAllByMemberId(memberId);
-	}
+    public boolean existByIdMember(int memberId) {
+        if (checkoutRecordRepository.existByIdMember(memberId)>0)
+            return true;
+        else
+            return false;
+    }
 
+    private CheckoutRecord buildCheckoutRecord(BookCopy availableBookCopy, Member member) {
+        CheckoutRecord checkoutRecord = new CheckoutRecord();
+        checkoutRecord.setBookCopy(availableBookCopy);
+        checkoutRecord.setCheckoutDate(LocalDate.now());
+        checkoutRecord.setDueDate(
+                checkoutRecord.getCheckoutDate().plusDays(availableBookCopy.getBook().getMaxCheckoutDate()));
+        checkoutRecord.setMember(member);
+        return checkoutRecord;
+    }
 }

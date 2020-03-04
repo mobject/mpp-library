@@ -24,7 +24,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mpplibrary.controller.CheckoutController;
-import mpplibrary.controller.ManageMemberController;
 import mpplibrary.dto.CheckoutRecordDTO;
 import mpplibrary.model.CheckoutRecord;
 import mpplibrary.util.SpringBeansUtil;
@@ -50,12 +49,12 @@ public class CheckoutRecordForm extends Stage {
 	private TableView<CheckoutRecordDTO> table = new TableView<>();
 	private int userId;
 	private CheckoutController checkoutController;
-	private ManageMemberController manageMemberController;
+	//private ManageMemberController manageMemberController;
 	
 	public CheckoutRecordForm() {
 		GridPane gridPane = createMemberFormPane();
 		checkoutController = SpringBeansUtil.getBean(CheckoutController.class);
-		manageMemberController = SpringBeansUtil.getBean(ManageMemberController.class);
+		//manageMemberController = SpringBeansUtil.getBean(ManageMemberController.class);
 		
 		//memberId = SpringBeansUtil.getSession().getMemberId();
 		userId = 0;
@@ -109,9 +108,10 @@ public class CheckoutRecordForm extends Stage {
 					table.getItems().clear();
 					
                 } else {
-                	if (!manageMemberController.isMemberExist(Integer.parseInt(txtMemberId.getText()))) {
+                	if (!checkoutController.existByIdMember(Integer.parseInt(txtMemberId.getText()))) {
     					msgTarget.setText(ERROR_EXISTED_MEMBER);
     					msgTarget.setFill(Color.FIREBRICK);
+    					table.getItems().clear();
     				} else {
     					//Fill data  
     					table.setItems(tableFill(txtMemberId.getText()));
@@ -125,7 +125,7 @@ public class CheckoutRecordForm extends Stage {
 		
 		//TableView section
 		table.setPrefWidth(500);
-		final Label label = new Label(LBL_HISTORY_CHECKOUT);
+		Label label = new Label(LBL_HISTORY_CHECKOUT);
         label.setFont(new Font(FONT, 15));
         label.setTextFill(Color.BLUEVIOLET);
         gridPane.add(label, 0, row);
@@ -134,18 +134,16 @@ public class CheckoutRecordForm extends Stage {
 		table.setEditable(false);
 				
 		TableColumn<CheckoutRecordDTO, String> isbn  = new TableColumn<>(COL_TITLE_ISBN);
-		//isbn.setResizable(true);
 		isbn.setMinWidth(60);
-		//CheckoutRecordDTO dto = new CheckoutRecordDTO(checkoutRecord);
 		isbn.setCellValueFactory(new PropertyValueFactory<>("bookIsbn"));
 		
 		TableColumn<CheckoutRecordDTO, String> bookName  = new TableColumn<>(COL_TITLE_BOOKNAME);
 		bookName.setMinWidth(180);
 		bookName.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
 		
-		TableColumn<CheckoutRecordDTO, String> author  = new TableColumn<>(COL_TITLE_AUTHOR);
-		author.setMinWidth(80);
-		author.setCellValueFactory(new PropertyValueFactory<>("authorName"));
+		TableColumn<CheckoutRecordDTO, String> authorName  = new TableColumn<>(COL_TITLE_AUTHOR);
+		authorName.setMinWidth(80);
+		authorName.setCellValueFactory(new PropertyValueFactory<>("authorName"));
 		
 		//Date column has 2 sub-column
 		TableColumn<CheckoutRecordDTO, String> date  = new TableColumn<>(COL_TITLE_DATE);
@@ -161,7 +159,7 @@ public class CheckoutRecordForm extends Stage {
 		
 		date.getColumns().addAll(checkoutDate, dueDate);
 		
-		table.getColumns().addAll(isbn, bookName, author, date);
+		table.getColumns().addAll(isbn, bookName, authorName, date);
 		
 		gridPane.add(table, 0, row, 4, 1);
 		
@@ -173,7 +171,6 @@ public class CheckoutRecordForm extends Stage {
 	        ObservableList<CheckoutRecordDTO> listData = FXCollections.observableArrayList();
 	        
 	        List<CheckoutRecord> checkoutRecords = checkoutController.findCheckoutRecordsByMemberId(Integer.parseInt(memberId));
-	        //List<CheckoutRecordDTO> list = checkoutRecords.stream().map(CheckoutRecordDTO::new).collect(Collectors.toList());
 	        List<CheckoutRecordDTO> list = new ArrayList<>();
 	        for (CheckoutRecord checkoutRecord: checkoutRecords) {
 	        	CheckoutRecordDTO checkoutRecordDTO = new CheckoutRecordDTO(checkoutRecord);

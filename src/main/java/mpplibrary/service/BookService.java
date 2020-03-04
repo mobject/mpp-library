@@ -8,16 +8,17 @@ import mpplibrary.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
+
+	public Optional<Book> findBookByIsbn(String isbn) {
+		return bookRepository.findFirstByIsbn(isbn);
+	}
 
 	public BookDto addBook(BookDto bookDto, AuthorDto authorDto) {
 		// TODO Unique isbn

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -26,8 +28,12 @@ public class BookCopyService {
         bookCopyRepository.saveAll(bookCopies);
     }
 
-    public BookCopy getAvailableBookCopy(String isbn) {
+    public Optional<BookCopy> getAvailableBookCopy(String isbn) {
         return bookCopyRepository.findFirstByAvailableAndBookIsbn(true, isbn);
+    }
+
+    public List<BookCopy> findAllBookCopy(String isbn) {
+        return bookCopyRepository.findAllByBookIsbn(isbn);
     }
 
     private Iterable<BookCopy> buildBookCopies(Book book, int numberOfCopies) {
