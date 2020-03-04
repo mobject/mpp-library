@@ -9,6 +9,9 @@ import javafx.scene.control.TextField;
 import mpplibrary.dto.CheckoutRecordDTO;
 import mpplibrary.model.CheckoutRecord;
 import mpplibrary.service.CheckoutService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -41,5 +44,11 @@ public class CheckoutController {
         items.add(dto);
         checkoutRecordsTableView.setItems(items);
     }
+    
+    public List<CheckoutRecord> findCheckoutRecordsByMemberId(int memberId) {
+    	return checkoutService.findCheckoutRecordsByMemberId(memberId);
+    	
+    }
+    
 
 }

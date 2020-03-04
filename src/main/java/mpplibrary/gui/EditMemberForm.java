@@ -193,7 +193,7 @@ public class EditMemberForm extends Stage {
                 	
                 	
                 	//Check if MemberID not exist
-    				if (!isMemberExist(txtMemberId.getText())) {
+    				if (!manageMemberController.isMemberExist(Integer.parseInt(txtMemberId.getText()))) {
     					msgTarget.setText(ERROR_EXISTED_MEMBER);
     					msgTarget2.setFill(Color.FIREBRICK);
     				} else {
@@ -228,10 +228,11 @@ public class EditMemberForm extends Stage {
 		
 	}
 	
-
+	/*
 	private boolean isMemberExist(String memberId) {
 		return manageMemberController.isMemberExist(Integer.parseInt(memberId));
 	}
+	*/
 	
 	private void editMember(String memberId, String firstName, String lastName,
 			String phone, String city, String street, String state, String zip) {

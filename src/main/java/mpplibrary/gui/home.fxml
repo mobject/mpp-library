@@ -12,7 +12,7 @@
             <Button text="Edit Book" onAction="#editBookAction"/>
             <Button text="Checkout Book" onAction="#checkoutAction"/>
             <Button text="Add Copy" onAction="#addBookCopyAction"/>
-            <Button text="Up Coming Due Date"></Button>
+            <Button text="Up Coming Due Date" ></Button>
          </children>
       </FlowPane>
       <Label text="MEMBER" GridPane.rowIndex="2" GridPane.columnIndex="0"  />

@@ -1,18 +1,10 @@
 package mpplibrary.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Member")
-public class Member {
+@Table(name = "Author")
+public class Author {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -20,6 +12,8 @@ public class Member {
 	private String firstName;
 	private String lastName;
 	private String phone;
+	@Column(name="bio")
+	private String shortBio;
 	
 		
 	@OneToOne(cascade = CascadeType.ALL)
@@ -29,8 +23,8 @@ public class Member {
 	public int getId() {
 		return id;
 	}
-	public void setId(int idMember) {
-		this.id = idMember;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getFirstName() {
@@ -60,6 +54,11 @@ public class Member {
 		this.address = address;
 	}
 
-	
-	
+	public String getShortBio() {
+		return shortBio;
+	}
+
+	public void setShortBio(String shortBio) {
+		this.shortBio = shortBio;
+	}
 }

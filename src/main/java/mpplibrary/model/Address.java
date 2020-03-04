@@ -20,9 +20,6 @@ public class Address {
 	private String state;
 	private int zip;
 	
-	@OneToOne(mappedBy = "address")
-	private Member memberId;
-	
 	public int getId() {
 		return id;
 	}
@@ -52,12 +49,6 @@ public class Address {
 	}
 	public void setZip(int zip) {
 		this.zip = zip;
-	}
-	public Member getMemberId() {
-		return memberId;
-	}
-	public void setMemberId(Member memberId) {
-		this.memberId = memberId;
 	}
 	
 }
