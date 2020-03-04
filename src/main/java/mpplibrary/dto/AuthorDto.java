@@ -9,9 +9,9 @@ public class AuthorDto {
     private String street;
     private String city;
     private String state;
-    private int zipCode;
+    private String zipCode;
 
-    public AuthorDto(String firstName, String lastName, String phone, String shortBio, String street, String city, String state, int zipCode) {
+    public AuthorDto(String firstName, String lastName, String phone, String shortBio, String street, String city, String state, String zipCode) {
 
         this.firstName = firstName;
         this.lastName = lastName;
@@ -87,11 +87,11 @@ public class AuthorDto {
         this.state = state;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

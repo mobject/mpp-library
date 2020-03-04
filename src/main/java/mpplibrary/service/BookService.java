@@ -44,7 +44,7 @@ public class BookService {
         address.setStreet(authorDto.getStreet());
         address.setCity(authorDto.getCity());
         address.setState(authorDto.getState());
-        address.setZip(authorDto.getZipCode());
+        address.setZip(Integer.parseInt(authorDto.getZipCode()));
 
         author.setAddress(address);
         newBook.setAuthor(author);
@@ -85,7 +85,7 @@ public class BookService {
         address.setStreet(authorDto.getStreet());
         address.setCity(authorDto.getCity());
         address.setState(authorDto.getState());
-        address.setZip(authorDto.getZipCode());
+        address.setZip(Integer.parseInt(authorDto.getZipCode()));
 
         author.setAddress(address);
         updateBook.setAuthor(author);

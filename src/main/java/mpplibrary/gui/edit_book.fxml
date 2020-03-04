@@ -26,7 +26,7 @@
                                 <ToggleGroup  fx:id="checkoutPeriodGroup" />
                         </fx:define>
                         <Label text="Max checkout period:"/>
-                        <RadioButton fx:id="maxChechoutPeriondInDaysFor17RadioButton" toggleGroup="$checkoutPeriodGroup" text="17 days" onAction="#maxCheckoutDaySelectionActionFor17"/>
+                        <RadioButton fx:id="maxChechoutPeriondInDaysFor7RadioButton" toggleGroup="$checkoutPeriodGroup" text="7 days" onAction="#maxCheckoutDaySelectionActionFor7"/>
                         <RadioButton fx:id="maxChechoutPeriondInDaysFor21RadioButton"  toggleGroup="$checkoutPeriodGroup" text="21 days" onAction="#maxCheckoutDaySelectionActionFor21"/>
 
                 </HBox>

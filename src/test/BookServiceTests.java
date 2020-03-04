@@ -32,7 +32,7 @@ public class BookServiceTests {
     @Test
     public void shouldAddNewBook() {
         BookDto bookDto = new BookDto("isbn-13e", "The Big Bang", 17);
-        AuthorDto authorDto = new AuthorDto("Guyin", "Moze", "07041928388", "This buy had to guy a bic gar", "1000 N.", "Fairfield", "Iowa", 52557);
+        AuthorDto authorDto = new AuthorDto("Guyin", "Moze", "07041928388", "This buy had to guy a bic gar", "1000 N.", "Fairfield", "Iowa", "52557");
         bookDto.setAuthorDto(authorDto);
         bookDto = bookService.addBook( bookDto);
         Assert.assertNotNull("New book id is null", bookDto.getId());
@@ -43,7 +43,7 @@ public class BookServiceTests {
     @Test
     public void shouldUpdateBook() {
         BookDto bookDto = new BookDto("isbn-13e", "The Big Bang", 17);
-        AuthorDto authorDto = new AuthorDto("Guyin", "Moze", "07041928388", "This buy had to guy a bic gar", "1000 N.", "Fairfield", "Iowa", 52557);
+        AuthorDto authorDto = new AuthorDto("Guyin", "Moze", "07041928388", "This buy had to guy a bic gar", "1000 N.", "Fairfield", "Iowa", "52557");
         bookDto.setAuthorDto(authorDto);
         bookDto = bookService.addBook( bookDto);
         Assert.assertNotNull("New book id is null", bookDto.getId());
@@ -72,7 +72,7 @@ public class BookServiceTests {
     public void shouldGetNoOfCopiesAvailable() {
         String isbn = "isbn-13e";
         BookDto bookDto = new BookDto(isbn, "The Big Bang", 17);
-        AuthorDto authorDto = new AuthorDto("Guyin", "Moze", "07041928388", "This buy had to guy a bic gar", "1000 N.", "Fairfield", "Iowa", 52557);
+        AuthorDto authorDto = new AuthorDto("Guyin", "Moze", "07041928388", "This buy had to guy a bic gar", "1000 N.", "Fairfield", "Iowa", "52557");
         bookDto.setAuthorDto(authorDto);
         bookDto = bookService.addBook( bookDto);
         Assert.assertNotNull("New book id is null", bookDto.getId());

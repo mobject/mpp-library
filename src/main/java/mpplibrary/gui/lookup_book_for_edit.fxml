@@ -7,16 +7,16 @@
           xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="mpplibrary.controller.LookupBookController">
 
-    <VBox>
-        <Label text="Edit Book"/>
+    <VBox spacing="20">
+        <Label text="Find Book to Edit"/>
         <HBox spacing="20"
               GridPane.columnIndex="1" GridPane.rowIndex="1">
             <Label text="ISBN:"
-                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                   alignment="BASELINE_CENTER"/>
 
             <TextField fx:id="isbnField"
                        GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <Button fx:id="submitNewBookBtn" text="Find Book"
+            <Button text="Find Book"
                     onAction="#submitLookupBookForEditRequest"/>
         </HBox>
     </VBox>
