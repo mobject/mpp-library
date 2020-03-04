@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import mpplibrary.dto.CheckoutRecordDTO;
+import mpplibrary.gui.MessagePopup;
 import mpplibrary.model.CheckoutRecord;
 import mpplibrary.service.CheckoutService;
 
@@ -33,15 +34,19 @@ public class CheckoutController {
     public void checkOutAction(ActionEvent actionEvent) {
         String isbn = isbnField.getText();
         String memberId = memberIdField.getText();
-
-        CheckoutRecord checkoutRecord = checkoutService.checkoutBook(isbn, Integer.valueOf(memberId));
-        CheckoutRecordDTO dto = new CheckoutRecordDTO(checkoutRecord);
-
         ObservableList<CheckoutRecordDTO> items = checkoutRecordsTableView.getItems();
         if (items != null && items.size() == 0) {
             items = FXCollections.observableArrayList();
         }
-        items.add(dto);
+        CheckoutRecord checkoutRecord = null;
+        try {
+            checkoutRecord = checkoutService.checkoutBook(isbn, Integer.valueOf(memberId));
+            CheckoutRecordDTO dto = new CheckoutRecordDTO(checkoutRecord);
+            items.add(dto);
+
+        } catch (Exception e) {
+            MessagePopup.displayError(e.getMessage());
+        }
         checkoutRecordsTableView.setItems(items);
     }
     

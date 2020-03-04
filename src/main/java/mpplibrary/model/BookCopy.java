@@ -16,7 +16,7 @@ public class BookCopy {
     private Long id;
     private boolean available = true;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "idBook", referencedColumnName = "id")
     private Book book;
 
