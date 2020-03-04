@@ -37,8 +37,8 @@ public class SystemController {
 
     public void login(javafx.event.ActionEvent actionEvent) throws IOException {
         try {
-            User user = userService.checkLogin(userIdField.getText(), passwordField.getText());
-            userSession.setUser(user);
+            //User user = userService.checkLogin(userIdField.getText(), passwordField.getText());
+            //userSession.setUser(user);
             FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/home.fxml"));
             Scene scene = ((Button) actionEvent.getSource()).getScene();
             Stage primaryStage = (Stage) (scene.getWindow());

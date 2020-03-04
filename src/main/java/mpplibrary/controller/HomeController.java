@@ -43,6 +43,7 @@ public class HomeController {
 
     @FXML
     void initialize(){
+        /*
         if (userSession.hasAdminPermission()){
             checkoutButton.setDisable(true);
             checkoutRecordsButton.setDisable(true);
@@ -53,7 +54,7 @@ public class HomeController {
             addBookButton.setDisable(true);
             addMemberButton.setDisable(true);
             editMemberButton.setDisable(true);
-        }
+        } */
     }
 
     public void checkoutAction(javafx.event.ActionEvent actionEvent) throws IOException {

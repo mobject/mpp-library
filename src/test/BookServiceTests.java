@@ -33,8 +33,10 @@ public class BookServiceTests {
     public void shouldAddNewBook() {
         BookDto bookDto = new BookDto("isbn-13e", "The Big Bang", 17);
         AuthorDto authorDto = new AuthorDto("Guyin", "Moze", "07041928388", "This buy had to guy a bic gar", "1000 N.", "Fairfield", "Iowa", 52557);
-        bookDto = bookService.addBook( bookDto, authorDto);
+        bookDto.setAuthorDto(authorDto);
+        bookDto = bookService.addBook( bookDto);
         Assert.assertNotNull("New book id is null", bookDto.getId());
+        Assert.assertNotNull("New book author phone number is null", bookDto.getAuthorDto().getPhone());
         Assert.assertTrue("New book id can not be <= 0", bookDto.getId() > 0);
     }
 
@@ -42,7 +44,8 @@ public class BookServiceTests {
     public void shouldUpdateBook() {
         BookDto bookDto = new BookDto("isbn-13e", "The Big Bang", 17);
         AuthorDto authorDto = new AuthorDto("Guyin", "Moze", "07041928388", "This buy had to guy a bic gar", "1000 N.", "Fairfield", "Iowa", 52557);
-        bookDto = bookService.addBook( bookDto, authorDto);
+        bookDto.setAuthorDto(authorDto);
+        bookDto = bookService.addBook( bookDto);
         Assert.assertNotNull("New book id is null", bookDto.getId());
         Assert.assertTrue("New book id can not be <= 0", bookDto.getId() > 0);
 
@@ -53,7 +56,8 @@ public class BookServiceTests {
         bookDto.setTitle(updateTitle);
         authorDto.setFirstName(authorFirstName);
         authorDto.setCity(authorCity);
-        bookDto = bookService.updateBook(bookDto, authorDto);
+        bookDto.setAuthorDto(authorDto);
+        bookDto = bookService.updateBook(bookDto);
 
         Assert.assertEquals(updateTitle, bookDto.getTitle());
         Assert.assertEquals(authorFirstName, bookDto.getAuthorDto().getFirstName());
@@ -69,7 +73,8 @@ public class BookServiceTests {
         String isbn = "isbn-13e";
         BookDto bookDto = new BookDto(isbn, "The Big Bang", 17);
         AuthorDto authorDto = new AuthorDto("Guyin", "Moze", "07041928388", "This buy had to guy a bic gar", "1000 N.", "Fairfield", "Iowa", 52557);
-        bookDto = bookService.addBook( bookDto, authorDto);
+        bookDto.setAuthorDto(authorDto);
+        bookDto = bookService.addBook( bookDto);
         Assert.assertNotNull("New book id is null", bookDto.getId());
         Assert.assertTrue("New book id can not be <= 0", bookDto.getId() > 0);
         List<BookCopyDto> bookCopies = bookService.getBookCopiesByIsbn(isbn);

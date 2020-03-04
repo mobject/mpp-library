@@ -26,18 +26,19 @@ public class BookService {
     @Autowired
     private AuthorRepository authorRepository;
 
-    public BookDto addBook(BookDto bookDto, AuthorDto authorDto) {
+    public BookDto addBook(BookDto bookDto) {
         // TODO Unique isbn
         Book newBook = new Book();
         newBook.setIsbn(bookDto.getIsbn());
         newBook.setTitle(bookDto.getTitle());
         newBook.setMaxCheckoutDate(bookDto.getMaxCheckoutPeriodInDays());
 
+        AuthorDto authorDto = bookDto.getAuthorDto();
         Author author = new Author();
         author.setFirstName(authorDto.getFirstName());
         author.setLastName(authorDto.getLastName());
-        author.setPhone(author.getPhone());
-        author.setShortBio(author.getShortBio());
+        author.setPhone(authorDto.getPhone());
+        author.setShortBio(authorDto.getShortBio());
 
         Address address = new Address();
         address.setStreet(authorDto.getStreet());
@@ -56,13 +57,15 @@ public class BookService {
 
         bookDto.setId(newBook.getId());
         authorDto.setId(newBook.getAuthor().getId());
+        Author newAuthor = newBook.getAuthor();
+        authorDto.setPhone(newAuthor.getPhone());
         bookDto.setAuthorDto(authorDto);
 
         return bookDto;
     }
 
 
-    public BookDto updateBook(BookDto bookDto, AuthorDto authorDto) {
+    public BookDto updateBook(BookDto bookDto) {
 
         Book updateBook = bookRepository.findById(bookDto.getId()).orElseThrow(BookNotFoundException::new);
         // TODO Unique isbn
@@ -71,11 +74,12 @@ public class BookService {
         updateBook.setTitle(bookDto.getTitle());
         updateBook.setMaxCheckoutDate(bookDto.getMaxCheckoutPeriodInDays());
 
-		Author author = authorRepository.findById(authorDto.getId()).orElseThrow(AuthorNotFoundException::new);
+        AuthorDto authorDto = bookDto.getAuthorDto();
+		Author author = authorRepository.findById(updateBook.getAuthor().getId()).orElseThrow(AuthorNotFoundException::new);
         author.setFirstName(authorDto.getFirstName());
         author.setLastName(authorDto.getLastName());
-        author.setPhone(author.getPhone());
-        author.setShortBio(author.getShortBio());
+        author.setPhone(authorDto.getPhone());
+        author.setShortBio(authorDto.getShortBio());
 
         Address address = author.getAddress();
         address.setStreet(authorDto.getStreet());
