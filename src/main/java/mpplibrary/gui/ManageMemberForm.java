@@ -185,6 +185,7 @@ public class ManageMemberForm extends Stage {
 		}
 	}
 	
+
 	private boolean isMemberExist(String memberId) {
 		//TODO
 		return false;

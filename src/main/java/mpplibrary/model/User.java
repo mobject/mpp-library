@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@Table(name = "users")
+@Table(name = "Users")
 public class User {
 
 	@Id
@@ -16,6 +16,7 @@ public class User {
 	private String password;
 
 	@OneToOne
+	@JoinColumn(name = "idRole")
 	private Role role;
 	
 	public Long getId() {

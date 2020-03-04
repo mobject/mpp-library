@@ -44,7 +44,7 @@ public class EditMemberForm extends Stage {
 	int row = 0;
 	
 	public EditMemberForm() {
-		//Initilize Controller
+		//Initialize Controller
 		manageMemberController = SpringBeansUtil.getBean(ManageMemberController.class);
 		
 		GridPane gridPane = createMemberFormPane();

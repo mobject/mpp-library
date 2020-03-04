@@ -42,23 +42,18 @@ public class CheckoutRecordForm extends Stage {
 	private static final String COL_TITLE_DUE_DATE = "DUE";
 	
 	private static final String BTN_SEARCH = "SEARCH";
-	protected static final String ERROR_EXISTED_MEMBER = "Member does not exist";
+	protected static final String ERROR_EXISTED_MEMBER = "Member does not checkout";
 
 	private static final String FONT = "Tahoma";
 	
 	private TableView<CheckoutRecordDTO> table = new TableView<>();
-	private int userId;
 	private CheckoutController checkoutController;
-	//private ManageMemberController manageMemberController;
 	
 	public CheckoutRecordForm() {
-		GridPane gridPane = createMemberFormPane();
 		checkoutController = SpringBeansUtil.getBean(CheckoutController.class);
-		//manageMemberController = SpringBeansUtil.getBean(ManageMemberController.class);
 		
-		//memberId = SpringBeansUtil.getSession().getMemberId();
-		userId = 0;
-		
+		GridPane gridPane = createMemberFormPane();
+			
 		addUIControls(gridPane);
 		Scene scene = new Scene(gridPane, 800, 500);
         this.setScene(scene);
