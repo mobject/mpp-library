@@ -25,6 +25,9 @@ public class BookService {
 
     @Autowired
     private AuthorRepository authorRepository;
+    
+    @Autowired
+    private BookCopyService bookCopyService;
 
     public BookDto addBook(BookDto bookDto) {
         // TODO Unique isbn
@@ -51,10 +54,15 @@ public class BookService {
 
         BookCopy bookCopy = new BookCopy();
         bookCopy.setBook(newBook);
-        List<BookCopy> bookCopies = new ArrayList<>(Collections.singletonList(bookCopy));
-        newBook.setBookCopies(bookCopies);
+//        List<BookCopy> bookCopies = new ArrayList<>(Collections.singletonList(bookCopy));
+//        newBook.setBookCopies(bookCopies);
         newBook = bookRepository.save(newBook);
-
+        try {
+			bookCopyService.addBookCopy(newBook.getIsbn(), 1);
+		} catch (mpplibrary.exception.BookNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         bookDto.setId(newBook.getId());
         authorDto.setId(newBook.getAuthor().getId());
         Author newAuthor = newBook.getAuthor();

@@ -26,7 +26,7 @@ public class Book  {
 	private String title;
 	private int maxCheckoutDate;
 
-	@OneToMany(cascade = CascadeType.ALL)//(mappedBy = "book", cascade = CascadeType.ALL)
+	@OneToMany//(mappedBy = "book", cascade = CascadeType.ALL)
 	private List<BookCopy> bookCopies;
 
 	public Book() {
