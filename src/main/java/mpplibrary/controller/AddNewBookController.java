@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import mpplibrary.dto.AuthorDto;
 import mpplibrary.dto.BookDto;
+import mpplibrary.gui.MessagePopup;
 import mpplibrary.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,9 +35,15 @@ public class AddNewBookController {
     private BookService bookService;
 
     public void submitNewBookRequest(javafx.event.ActionEvent actionEvent) throws IOException {
-        BookDto bookDto = new BookDto(isbnField.getText(), titleField.getText(), maxCheckoutPeriodInDays);
-        AuthorDto authorDto = new AuthorDto(authorFirstName.getText(), authorLastName.getText(), authorPhone.getText(), authorBio.getText(), authorStreet.getText(), authorCity.getText(), authorState.getText(), Integer.parseInt(authorZipCode.getText()));
-       bookService.addBook(bookDto, authorDto);
+       try {
+           BookDto bookDto = new BookDto(isbnField.getText(), titleField.getText(), maxCheckoutPeriodInDays);
+           AuthorDto authorDto = new AuthorDto(authorFirstName.getText(), authorLastName.getText(), authorPhone.getText(), authorBio.getText(), authorStreet.getText(), authorCity.getText(), authorState.getText(), Integer.parseInt(authorZipCode.getText()));
+           bookDto.setAuthorDto(authorDto);
+           bookService.addBook(bookDto);
+           MessagePopup.displaySuccess("Book added successfully.");
+       }catch (Exception ex ){
+           MessagePopup.displayError("Failed to add book.");
+       }
     }
 
 

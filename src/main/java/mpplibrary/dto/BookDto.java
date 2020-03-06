@@ -1,10 +1,11 @@
 package mpplibrary.dto;
 
 public class BookDto {
-    private int id;
+    private Integer id;
     private String isbn;
     private String title;
     private int maxCheckoutPeriodInDays;
+    private AuthorDto authorDto;
 
     public BookDto(String isbn, String title, int maxCheckoutPeriodInDays) {
         this.isbn = isbn;
@@ -12,7 +13,15 @@ public class BookDto {
         this.maxCheckoutPeriodInDays = maxCheckoutPeriodInDays;
     }
 
-    public int getId() {
+    public AuthorDto getAuthorDto() {
+        return authorDto;
+    }
+
+    public void setAuthorDto(AuthorDto authorDto) {
+        this.authorDto = authorDto;
+    }
+
+    public Integer getId() {
         return id;
     }
 

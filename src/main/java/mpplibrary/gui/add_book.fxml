@@ -78,67 +78,10 @@
         </HBox>
 
         <HBox spacing="20" alignment="bottom_right">
-            <Button fx:id="submitNewBookBtn" text="Submit"
+            <Button text="Add Book"
                     onAction="#submitNewBookRequest"/>
         </HBox>
 
     </VBox>
-
-
-    <!-- Label text="Author 1 " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-    <Label text="First Name:"
-       GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-
-    <TextField fx:id="authorFirstName"
-           GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-
-    <Label text="Last Name:"
-       GridPane.columnIndex="0" GridPane.rowIndex="8"/>
-
-    <TextField fx:id="authorLastName"
-           GridPane.columnIndex="1" GridPane.rowIndex="8"/>
-
-    <Label text="Phone:"
-       GridPane.columnIndex="0" GridPane.rowIndex="9"/>
-
-    <TextField fx:id="authorPhone"
-           GridPane.columnIndex="1" GridPane.rowIndex="9"/>
-
-    <Label text="Bio:"
-       GridPane.columnIndex="0" GridPane.rowIndex="10"/>
-
-    <TextArea fx:id="authorBio" maxWidth="200"
-          GridPane.columnIndex="1" GridPane.rowIndex="10"/>
-
-    <Label text="Street:"
-       GridPane.columnIndex="0" GridPane.rowIndex="11"/>
-
-    <TextField fx:id="authorStreet"
-           GridPane.columnIndex="1" GridPane.rowIndex="11"/>
-
-    <Label text="City:"
-       GridPane.columnIndex="0" GridPane.rowIndex="12"/>
-
-    <TextField fx:id="authorCity"
-           GridPane.columnIndex="1" GridPane.rowIndex="12"/>
-
-    <Label text="State:"
-       GridPane.columnIndex="0" GridPane.rowIndex="13"/>
-
-    <TextField fx:id="authorState"
-           GridPane.columnIndex="1" GridPane.rowIndex="13"/>
-
-    <Label text="Zip:"
-       GridPane.columnIndex="0" GridPane.rowIndex="14"/>
-
-    <TextField fx:id="authorZipCode"
-           GridPane.columnIndex="1" GridPane.rowIndex="14"/>
-
-
-    <HBox spacing="20" alignment="bottom_right"
-      GridPane.columnIndex="1" GridPane.rowIndex="16">
-    <Button fx:id="submitNewBookBtn" text="Submit"
-            onAction="#submitNewBookRequest"/>
-    </HBox-->
 
 </GridPane>

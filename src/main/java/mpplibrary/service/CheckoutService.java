@@ -38,8 +38,8 @@ public class CheckoutService {
         BookCopy availableBookCopy = bookCopyService.getAvailableBookCopy(isbn).orElseThrow(BookNotFoundException::new);
         Member member = memberService.findById(memberId).orElseThrow(MemberNotFoundException::new);
         CheckoutRecord checkoutRecord = this.buildCheckoutRecord(availableBookCopy, member);
-        availableBookCopy.setAvailable(false);
-        bookCopyRepository.save(availableBookCopy);
+//        availableBookCopy.setAvailable(false);
+//        bookCopyRepository.save(availableBookCopy);
         return checkoutRecordRepository.save(checkoutRecord);
     }
 
@@ -48,10 +48,7 @@ public class CheckoutService {
     }
 
     public boolean existByIdMember(int memberId) {
-        if (checkoutRecordRepository.existByIdMember(memberId)>0)
-            return true;
-        else
-            return false;
+        return checkoutRecordRepository.existByIdMember(memberId)>0;
     }
 
     private CheckoutRecord buildCheckoutRecord(BookCopy availableBookCopy, Member member) {

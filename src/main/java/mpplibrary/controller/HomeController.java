@@ -43,6 +43,7 @@ public class HomeController {
 
     @FXML
     void initialize(){
+
         if (userSession.hasAdminPermission()){
             checkoutButton.setDisable(true);
             checkoutRecordsButton.setDisable(true);
