@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" 
+xmlns:fx="http://javafx.com/fxml/1" fx:controller="mpplibrary.controller.EditMemberController">
+
+    
+
+    <Label text="EDIT MEMBER" GridPane.rowIndex="1" />
+    <!--  
+     Member ID
+		Label lbl_memberIdSearch = new Label(LBL_MEMBER_ID);
+		gridPane.add(lbl_memberIdSearch, 0, row);
+		TextField txtMemberId = new TextField();
+		gridPane.add(txtMemberId, 1, row);
+		//Button in the same line	
+		Button btnSearch = new Button(BTN_SEARCH);
+		HBox hbBtn = new HBox(10);
+		hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
+		hbBtn.getChildren().add(btnSearch);
+		gridPane.add(hbBtn, 2, row);
+    -->
+    
+    <!-- Search section -->
+    <Label text="Member ID" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+	<TextField fx:id="txtMemberId" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="3" GridPane.rowIndex="2">
+        <Button onAction="#searchMemberAction" text="SEARCH" />
+    </HBox>
+    <Text fx:id="lblMessageSearch" fill="#fc0000" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+    
+    
+    
+    <!-- Edit section -->
+    <Label text="Member ID" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+	<TextField fx:id="txtMemberId1" GridPane.columnIndex="1" GridPane.rowIndex="4" disable="true" />
+
+	<Label text="First Name" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+	<TextField fx:id="txtFirstName" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+	<Label text="Last Name" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+	<TextField fx:id="txtLastName" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+	
+	<Label text="Street" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+	<TextField fx:id="txtStreet" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+	<Label text="City" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+	<TextField fx:id="txtCity" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+	
+	<Label text="State" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+	<TextField fx:id="txtState" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+	
+	<Label text="Zip" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+	<TextField fx:id="txtZip" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+
+	<Label text="Phone" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+	<TextField fx:id="txtPhone" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+
+	<Text fx:id="lblMessageEdit" fill="#fc0000" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="13">
+        <Button onAction="#updateMemberAction" text="SAVE" />
+    </HBox>
+
+
+
+
+</GridPane>
+
+
+
+

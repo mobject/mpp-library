@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" 
+xmlns:fx="http://javafx.com/fxml/1" fx:controller="mpplibrary.controller.AddMemberController">
+
+    
+
+    <Label text="ADD NEW MEMBER" GridPane.rowIndex="1" />
+    
+    <Label text="Member ID" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+	<TextField fx:id="txtMemberId" GridPane.columnIndex="1" GridPane.rowIndex="2" disable="true" />
+
+	<Label text="First Name" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+	<TextField fx:id="txtFirstName" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+	<Label text="Last Name" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+	<TextField fx:id="txtLastName" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+	
+	<Label text="Street" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+	<TextField fx:id="txtStreet" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+	<Label text="City" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+	<TextField fx:id="txtCity" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+	
+	<Label text="State" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+	<TextField fx:id="txtState" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+	
+	<Label text="Zip" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+	<TextField fx:id="txtZip" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+	<Label text="Phone" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+	<TextField fx:id="txtPhone" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+	<Text fx:id="lblMessage" fill="#fc0000" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="10" />
+
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="11">
+        <Button onAction="#addMemberAction" text="ADD" />
+    </HBox>
+
+
+
+
+</GridPane>
+
+
+
+
