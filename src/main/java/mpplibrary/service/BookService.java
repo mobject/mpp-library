@@ -1,10 +1,10 @@
 package mpplibrary.service;
 
-import mpplibrary.AuthorNotFoundException;
-import mpplibrary.BookNotFoundException;
 import mpplibrary.dto.AuthorDto;
 import mpplibrary.dto.BookCopyDto;
 import mpplibrary.dto.BookDto;
+import mpplibrary.exception.AuthorNotFoundException;
+import mpplibrary.exception.BookNotFoundException;
 import mpplibrary.model.*;
 import mpplibrary.repository.AuthorRepository;
 import mpplibrary.repository.BookRepository;
