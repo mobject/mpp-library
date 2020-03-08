@@ -1,7 +1,8 @@
 package mpplibrary.exception;
 
-public class BookNotFoundException extends Exception {
+public class BookNotFoundException extends RuntimeException {
     public BookNotFoundException(){
-        super("Book is not found");
+        super("Book not found.");
     }
+
 }
