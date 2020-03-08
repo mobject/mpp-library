@@ -1,5 +1,10 @@
 package mpplibrary.controller;
 
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,15 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mpplibrary.MPPFXMLLoader;
-import mpplibrary.gui.CheckoutRecordForm;
-import mpplibrary.gui.EditMemberForm;
-import mpplibrary.gui.ManageMemberForm;
 import mpplibrary.service.UserSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 @Component
 public class HomeController {
@@ -101,22 +98,55 @@ public class HomeController {
 
     //Member actions
     public void addMemberAction(javafx.event.ActionEvent actionEvent) throws IOException {
-        Stage stage = new ManageMemberForm();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.show();
+        //Stage stage = new ManageMemberForm();
+        //stage.initModality(Modality.WINDOW_MODAL);
+        //stage.show();
+    	
+    	FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/add_member.fxml"));
+    	GridPane gridPane = fxmlLoader.load();
+    	Stage stage = new Stage();
+    	stage.setTitle("Add New Member");
+    	Scene scene = new Scene(gridPane, 800, 500);
+    	stage.initModality(Modality.WINDOW_MODAL);
+    	stage.setScene(scene);
+    	stage.show();
+    	
     }
 
     public void editMemberAction(javafx.event.ActionEvent actionEvent) throws IOException {
-        Stage stage = new EditMemberForm();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.show();
+        //Stage stage = new EditMemberForm();
+        //stage.initModality(Modality.WINDOW_MODAL);
+        //stage.show();
+    	
+    	FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/edit_member.fxml"));
+    	GridPane gridPane = fxmlLoader.load();
+    	Stage stage = new Stage();
+    	stage.setTitle("Edit Member");
+    	Scene scene = new Scene(gridPane, 800, 500);
+    	stage.initModality(Modality.WINDOW_MODAL);
+    	stage.setScene(scene);
+    	stage.show();
     }
 
     //Checkout Record History
     public void checkoutRecordAction(javafx.event.ActionEvent actionEvent) throws IOException {
-        Stage stage = new CheckoutRecordForm();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.show();
+        //Stage stage = new CheckoutRecordForm();
+        //stage.initModality(Modality.WINDOW_MODAL);
+        //stage.show();
+    	
+    	//FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/checkout_record.fxml"));
+        //Stage vBox = fxmlLoader.load();
+        //vBox.show();
+    	
+    	FXMLLoader fxmlLoader = new MPPFXMLLoader(getClass().getResource("../gui/checkout_record.fxml"));
+    	GridPane gridPane = fxmlLoader.load();
+    	Stage stage = new Stage();
+    	stage.setTitle("Checkout Record of Member");
+    	Scene scene = new Scene(gridPane, 800, 500);
+    	stage.initModality(Modality.WINDOW_MODAL);
+    	stage.setScene(scene);
+    	stage.show();
+    	
     }
 
 }
